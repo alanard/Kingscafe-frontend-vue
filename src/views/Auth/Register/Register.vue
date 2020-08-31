@@ -1,0 +1,226 @@
+<template>
+  <div>
+    <div class="brand">
+      <span class="title">King'S Cafe</span>
+      <span class="description">
+        Lorem ipsum dolor sit amet consectetur,
+        adipisicing elit. Officia molestias repellendus
+        nesciunt voluptate, assumenda vitae similique doloribus animi cum error.
+      </span>
+    </div>
+    <!-- Add User -->
+    <div class="overlay">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body p-4">
+            <form>
+              <div class="form-group">
+                <input
+                  type="text"
+                  name="firstName"
+                  class="form-control form-control-lg"
+                  placeholder="First Name"
+                  v-model="firstName"
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  name="lastName"
+                  class="form-control form-control-lg"
+                  placeholder="Last Name"
+                  v-model="lastName"
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  name="email"
+                  class="form-control form-control-lg"
+                  placeholder="Email"
+                  v-model="email"
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  name="password"
+                  class="form-control form-control-lg"
+                  placeholder="Password"
+                  v-model="password"
+                />
+              </div>
+              <div class="form-group">
+                <div class="btn-danger" v-if="errorMsg">ll;</div>
+                <button
+                  type="submit"
+                  class="btn btn-info btn-block btn-lg"
+                  @click="handleRegister"
+                >Register</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import { mapActions } from 'vuex'
+export default {
+  name: 'register',
+  data() {
+    return {
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: ''
+    }
+  },
+  errhandling: {
+    // errorMsg: this.err.response.status === 403
+  },
+  methods: {
+    ...mapActions(['register']),
+    handleRegister(e) {
+      e.preventDefault()
+      const data = {
+        firstName: this.firstName,
+        lastName: this.lastName,
+        email: this.email,
+        password: this.password
+      }
+      this.register(data)
+        .then(() => {
+          console.log('user berhasil ditambahkan')
+          // this.$router.push('login')
+        })
+        .catch((err) => {
+          if (err.response.status === 403) {
+            alert('Email Sudah terdaftar')
+          } else {
+            alert('Semua data harus diisi')
+          }
+        })
+    }
+  }
+}
+</script>
+
+<style scoped>
+.brand {
+  /* border: 1px solid black; */
+  display: inline-block;
+  position: absolute;
+  top: 180px;
+  left: 720px;
+  width: 480px;
+  height: 250px;
+}
+.brand .title {
+  /* border: 1px solid black; */
+  font-family: 'Pacifico', cursive;
+  display: block;
+  font-size: 80px;
+  color: rgb(73, 65, 65);
+}
+.brand .description {
+  position: relative;
+  top: 15px;
+  font-size: 20px;
+  font-weight: bolder;
+  font-family: 'Lato', sans-serif;
+  /* display: block; */
+  /* text-align: right; */
+  color: rgb(73, 65, 65);
+}
+.modal-dialog {
+  /* border: 1px solid black; */
+  margin-top: 140px;
+  margin-right: 150px;
+  box-shadow: 10px 10px 10px 5px rgba(0, 0, 0, 0.25);
+}
+.line {
+  border: 1px solid rgb(111, 203, 226);
+  width: 80%;
+  margin: auto;
+}
+.btn.register {
+  margin-left: 50%;
+  margin-top: 25px;
+  width: 200px;
+  transform: translateX(-50%);
+  background-color: rgb(42, 44, 42);
+}
+
+/* Overlay */
+.overlay {
+  /* border: 1px solid black; */
+  position: absolute;
+  width: 600px;
+  left: 200px;
+}
+
+@media screen and (max-width: 576px) {
+  .container {
+    width: 360px;
+  }
+  .brand {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 480px;
+    height: 250px;
+  }
+  .brand .title {
+    border: 1px solid black;
+    font-family: 'Pacifico', cursive;
+    display: block;
+    padding-left: 100px;
+    left: 20px;
+    font-size: 25px;
+    color: rgb(73, 65, 65);
+  }
+  .brand .description {
+    border: 1px solid black;
+    display: block;
+    width: 350px;
+    text-align: center;
+    top: 15px;
+    font-size: 14px;
+    font-weight: bolder;
+    font-family: 'Lato', sans-serif;
+    color: rgb(73, 65, 65);
+  }
+  .modal-dialog {
+    /* border: 1px solid black; */
+    width: 300px;
+    margin-left: 30px;
+    margin-top: 140px;
+    margin-right: 150px;
+    box-shadow: 10px 10px 10px 5px rgba(0, 0, 0, 0.25);
+  }
+  .line {
+    border: 1px solid rgb(111, 203, 226);
+    width: 80%;
+    margin: auto;
+  }
+  .btn.register {
+    margin-left: 50%;
+    margin-top: 25px;
+    width: 200px;
+    transform: translateX(-50%);
+    background-color: rgb(42, 44, 42);
+  }
+
+  /* Overlay */
+  .overlay {
+    /* border: 1px solid black; */
+    position: absolute;
+    width: 600px;
+    left: 0px;
+  }
+}
+</style>
