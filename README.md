@@ -1,4 +1,4 @@
-KingsCafe Frontend VueJs
+## KingsCafe Frontend VueJs
 
 ## Project setup
 ```
