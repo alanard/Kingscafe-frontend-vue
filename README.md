@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # kingscafe2
 
 ## Project setup
@@ -22,3 +23,7 @@ yarn lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+=======
+# Kingscafe-frontend-vue
+Frontend Website kings cafe dibuat menggunakan bootstrap dan vue js
+>>>>>>> 1bcf4094a143a6359028e4aa0a32185a014d3449
