@@ -1,90 +1,49 @@
 <template>
   <div>
     <Navbar />
-    <div class="container">
-      <div class="row mt-3">
-        <div class="col-lg-6">
-          <h3 class="text-info">Add Product</h3>
-        </div>
-        <div class="col-lg-6">
-          <button class="btn btn-info float-right" @click="showAddModal">
-            <i class="fas fa-plus-circle"></i>&nbsp;&nbsp;Add New Product
-          </button>
-        </div>
-      </div>
-      <hr class="bg-info" />
-      <!-- box error message -->
-      <div class="alert alert-danger" v-if="errorMsg">Error Message</div>
-      <div class="alert alert-success" v-if="successMsg">Success Message</div>
-      <!-- Table Product -->
-      <Table :products="products" />
-    </div>
-    <!-- Add User -->
-    <div class="overlay" v-if="isShow">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Add New Product</h5>
-            <button type="button" class="close" @click="showAddModal">
-              <span aria-hidden="true">&times;</span>
+    <div class="main-content">
+      <AsideLeft class="aside-left" />
+      <div class="container">
+        <div class="row mt-3">
+          <div class="col-lg-6">
+            <h3 class="text-info">Add Product</h3>
+          </div>
+          <div class="col-lg-6">
+            <button class="btn btn-info float-right" @click="toggleModal">
+              <i class="fas fa-plus-circle"></i>&nbsp;&nbsp;Add New Product
             </button>
           </div>
-          <div class="modal-body p-4">
-            <form @submit.prevent="addProduct" enctype="multipart/form-data">
-              <div class="form-group">
-                <input
-                  type="text"
-                  name="name"
-                  class="form-control form-control-lg"
-                  placeholder="Name"
-                  v-model="name"
-                />
-              </div>
-              <div class="form-group">
-                <input
-                  type="file"
-                  class="form-control form-control-lg"
-                  @change="selectFile"
-                  ref="image"
-                />
-              </div>
-              <div v-if="message" :class="`message ${error ? 'is-danger' : 'is-succes'}`">
-                <div class="message-body">{{message}}</div>
-              </div>
-              <div class="form-group">
-                <input
-                  type="number"
-                  name="price"
-                  class="form-control form-control-lg"
-                  placeholder="Price"
-                  v-model="price"
-                />
-              </div>
-              <div class="form-group">
-                <input
-                  type="number"
-                  name="idCategory"
-                  class="form-control form-control-lg"
-                  placeholder="idCategory"
-                  v-model="idCategory"
-                />
-              </div>
-              <div class="form-group">
-                <input
-                  type="number"
-                  name="status"
-                  class="form-control form-control-lg"
-                  placeholder="Status"
-                  v-model="status"
-                />
-              </div>
-              <div class="form-group">
-                <button type="submit" class="btn btn-info btn-block btn-lg">Add Product</button>
-              </div>
-            </form>
-          </div>
+          <!-- Alert Product -->
+          <div
+            class="alert alert-primary"
+            role="alert"
+            v-show="addProductAlert"
+          >Yeeee! Data success added!</div>
+          <div
+            class="alert alert-success"
+            role="alert"
+            v-show="updateProductAlert"
+          >Yeeee! Data success Updated!</div>
+          <div
+            class="alert alert-danger"
+            role="alert"
+            v-show="deleteProductAlert"
+          >Yeeee! Data has ben Deleted!</div>
         </div>
+        <hr class="bg-info" />
+
+        <!-- Table Product -->
+        <Table :products="products" @event-update="setUpdate" />
+        <!-- Modal Add Data -->
       </div>
+      <!-- Ada Pengkondisian dimana jika modal menerima id maka modal tersebut akan digunakan di update -->
+      <!-- Tapi jika modal tidak mendapat id, maka akan digunakan untuk add data, karena add data tidak membutuhkan id -->
+      <Modal
+        v-show="modalActive"
+        :data="dataModal"
+        @close-modal="toggleModal"
+        @fire-event="handleEventModal"
+      />
     </div>
   </div>
 </template>
@@ -92,56 +51,105 @@
 <script>
 import Navbar from './components/Navbar'
 import Table from './components/Table'
-import axios from 'axios'
-import { mapActions } from 'vuex'
+import AsideLeft from '../../../components/_base/Aside-left'
+import Modal from '../../../components/_base/Modal'
+import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'Product',
   components: {
     Navbar,
-    Table
+    Table,
+    AsideLeft,
+    Modal
   },
-  data() {
-    return {
-      // products: [],
-      isShow: false,
+  data: () => ({
+    modalActive: false,
+    modalAlert: false,
+    dataModal: {
+      id: null,
       name: '',
-      image: '',
       price: '',
       idCategory: '',
       status: '',
-      file: '',
-      message: '',
-      err: false
+      image: null,
+      addProductAlert: false,
+      updateProductAlert: false,
+      deleteProductAlert: false
     }
-  },
+  }),
   methods: {
-    ...mapActions(['getProducts']),
-    selectFile() {
-      this.file = this.$refs.image.files[0]
-      this.message = ''
-      this.err = false
+    ...mapActions(['getProducts', 'postProducts', 'patchProduct']),
+    toggleModal() {
+      this.modalActive = !this.modalActive
+      if (!this.modalActive) {
+        this.clearModal()
+      }
+    },
+    handleEventModal() {
+      this.dataModal.id ? this.updateProduct() : this.addProduct()
+    },
+    updateProduct() {
+      const data = new FormData()
+      data.append('name', this.dataModal.name)
+      data.append('image', this.dataModal.image)
+      data.append('price', this.dataModal.price)
+      data.append('idCategory', this.dataModal.idCategory)
+      data.append('status', this.dataModal.status)
+      const container = { id: this.dataModal.id, data: data }
+      this.patchProduct(container)
+        .then((res) => {
+          this.clearModal()
+          this.getProducts()
+          console.log('update')
+          this.modalActive = false
+          this.addProductAlert = false
+          this.updateProductAlert = true
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+    setUpdate(data) {
+      this.modalActive = true
+      this.dataModal.id = data.id
+      this.dataModal.name = data.name
+      this.dataModal.price = data.price
+      this.dataModal.idCategory = data.idCategory
+      this.dataModal.status = data.status
+      this.dataModal.image = data.image
+    },
+    clearModal() {
+      this.dataModal.id = null
+      this.dataModal.name = ''
+      this.dataModal.price = ''
+      this.dataModal.idCategory = ''
+      this.dataModal.status = ''
+      this.dataModal.image = null
     },
     addProduct() {
-      const formData = new FormData()
-      formData.append('image', this.file)
-      formData.append('name', this.name)
-      formData.append('price', this.price)
-      formData.append('idCategory', this.idCategory)
-      formData.append('status', this.status)
-      axios
-        .post('http://localhost:4100/api/v1/products', formData)
+      const data = new FormData()
+      data.append('name', this.dataModal.name)
+      data.append('image', this.dataModal.image)
+      data.append('price', this.dataModal.price)
+      data.append('idCategory', this.dataModal.idCategory)
+      data.append('status', this.dataModal.status)
+      this.postProducts(data)
         .then((res) => {
-          alert('Data Success added!!!')
+          this.clearModal()
+          this.modalActive = false
+          this.updateProductAlert = false
+          this.addProductAlert = true
           this.getProducts()
         })
         .catch((err) => {
           console.log(err)
         })
-      this.isShow = false
-    },
-    showAddModal() {
-      this.isShow = !this.isShow
     }
+  },
+  computed: {
+    ...mapGetters({
+      products: 'products'
+    })
   },
   mounted() {
     this.getProducts()
@@ -150,6 +158,13 @@ export default {
 </script>
 
 <style scoped>
+.main-content {
+  display: flex;
+  flex-direction: row;
+}
+.aside-left {
+  flex: 0.4;
+}
 .overlay {
   position: fixed;
   top: 0;
@@ -157,5 +172,11 @@ export default {
   bottom: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.6);
+}
+.alert {
+  width: 100%;
+  margin: 10px 20px 0px 20px;
+  font-size: 18px;
+  font-weight: 500;
 }
 </style>

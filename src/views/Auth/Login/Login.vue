@@ -1,14 +1,14 @@
 <template>
   <div>
     <div class="brand">
+      <div class="img-brand"></div>
       <span class="title">King'S Cafe</span>
       <span class="description">
-        Lorem ipsum dolor sit amet consectetur,
-        adipisicing elit. Officia molestias repellendus
-        nesciunt voluptate, assumenda vitae similique doloribus animi cum error.
+        a contemporary cafe that provides many menu variants, ranging from food, drinks, desserts, cakes, etc.
+        And we provide and invite every street musician to contribute and provide entertainment every weekend
       </span>
     </div>
-    <!-- Add User -->
+    <!-- Form Login -->
     <div class="overlay">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -49,6 +49,7 @@
         </div>
       </div>
     </div>
+    <div class="img-brand2"></div>
   </div>
 </template>
 
@@ -71,7 +72,7 @@ export default {
         email: this.email,
         password: this.password
       }
-      this.login(data).then(() => {
+      this.login(data).then((res) => {
         this.getProducts()
         this.$router.push({ path: '/home' })
       })
@@ -88,22 +89,37 @@ export default {
   /* border: 1px solid black; */
   display: inline-block;
   position: absolute;
-  top: 180px;
-  left: 130px;
-  width: 480px;
+  top: 160px;
+  left: 150px;
+  width: 590px;
   height: 250px;
+}
+.img-brand {
+  /* border: 1px solid black; */
+  background-image: url('https://raw.githubusercontent.com/alanard/web-slicing-kingscafe/master/assets/img/landingPage/content/pngwing.com%20(6).png');
+  width: 230px;
+  height: 230px;
+  background-size: cover;
+  position: absolute;
+  top: -135px;
+  left: -100px;
+  right: 0px;
+  transform: rotate(-20deg);
+  z-index: -100;
 }
 .brand .title {
   /* border: 1px solid black; */
   font-family: 'Pacifico', cursive;
+  text-shadow: khaki;
   display: block;
-  font-size: 80px;
+  font-size: 110px;
   color: rgb(73, 65, 65);
+  z-index: 100;
 }
 .brand .description {
   position: relative;
   top: 15px;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: bolder;
   font-family: 'Lato', sans-serif;
   color: rgb(73, 65, 65);
@@ -111,7 +127,8 @@ export default {
 .modal-dialog {
   /* border: 1px solid black; */
   margin-top: 140px;
-  margin-right: 150px;
+  margin-right: 80px;
+  width: 460px;
   /* Depan untuk mengatur arah bayangan */
   box-shadow: 10px 10px 10px 5px rgba(0, 0, 0, 0.25);
 }
@@ -134,7 +151,6 @@ div .register-text {
   font-weight: bold;
   color: gray;
 }
-
 /* Setingan hp */
 @media screen and (max-width: 576px) {
   .brand {

@@ -1,15 +1,22 @@
 <template>
-<div class="header">
-      <div class="nav search">
-        <div class="img-menu"></div>
-        <input type="text" placeholder="Search Product">
-      </div>
-</div>
+  <div class="header">
+    <div class="nav search">
+      <div class="img-menu"></div>
+      <input type="text" placeholder="Search Product" v-on:keyup="search" />
+    </div>
+  </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
-  name: 'Navabar'
+  name: 'Navabar',
+  methods: {
+    ...mapActions(['handleSearch']),
+    search(e) {
+      this.handleSearch(e.target.value)
+    }
+  }
 }
 </script>
 
@@ -36,7 +43,7 @@ export default {
 }
 
 .header .nav.search .img-menu {
-  background-image: url("https://raw.githubusercontent.com/alanard/web-slicing-kingscafe/master/assets/img/menu1.png");
+  background-image: url('https://raw.githubusercontent.com/alanard/web-slicing-kingscafe/master/assets/img/menu1.png');
   position: relative;
   background-size: cover;
   width: 25px;
@@ -49,7 +56,7 @@ export default {
 .nav.search input {
   margin: auto;
   font-size: 25px;
-  font-family: "work sans", sans-serif;
+  font-family: 'work sans', sans-serif;
   font-weight: bold;
   padding: 20px;
   border: none;

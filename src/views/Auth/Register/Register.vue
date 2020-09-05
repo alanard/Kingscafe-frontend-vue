@@ -8,20 +8,23 @@
         nesciunt voluptate, assumenda vitae similique doloribus animi cum error.
       </span>
     </div>
-    <!-- Add User -->
+    <!-- Form Register -->
     <div class="overlay">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-body p-4">
-            <form>
+            <form class="was-validated">
               <div class="form-group">
                 <input
                   type="text"
                   name="firstName"
                   class="form-control form-control-lg"
                   placeholder="First Name"
+                  required
                   v-model="firstName"
                 />
+                <div class="valid-feedback">Look Good</div>
+                <div class="invalid-feedback">e.g. Ansell</div>
               </div>
               <div class="form-group">
                 <input
@@ -30,7 +33,10 @@
                   class="form-control form-control-lg"
                   placeholder="Last Name"
                   v-model="lastName"
+                  required
                 />
+                <div class="valid-feedback">Look Good</div>
+                <div class="invalid-feedback">e.g. Jenkins</div>
               </div>
               <div class="form-group">
                 <input
@@ -39,30 +45,42 @@
                   class="form-control form-control-lg"
                   placeholder="Email"
                   v-model="email"
+                  required
                 />
+                <div class="valid-feedback">Look Good</div>
+                <div class="invalid-feedback">e.g. jenkins24@gmail.com</div>
               </div>
+
               <div class="form-group">
                 <input
-                  type="text"
+                  type="password"
                   name="password"
                   class="form-control form-control-lg"
                   placeholder="Password"
                   v-model="password"
+                  required
                 />
+                <div class="valid-feedback">Look Good</div>
+                <div class="invalid-feedback">Password Must Be Min 6 Char</div>
               </div>
+
               <div class="form-group">
-                <div class="btn-danger" v-if="errorMsg">ll;</div>
-                <button
+                <div class="login">
+                  Sudah punya akun?
+                  <span @click="linkLogin">login</span>
+                </div>
+                <div
                   type="submit"
                   class="btn btn-info btn-block btn-lg"
                   @click="handleRegister"
-                >Register</button>
+                >Register</div>
               </div>
             </form>
           </div>
         </div>
       </div>
     </div>
+    <div class="img-brand2"></div>
   </div>
 </template>
 
@@ -83,6 +101,9 @@ export default {
   },
   methods: {
     ...mapActions(['register']),
+    linkLogin() {
+      this.$router.push({ path: '/login' })
+    },
     handleRegister(e) {
       e.preventDefault()
       const data = {
@@ -92,15 +113,16 @@ export default {
         password: this.password
       }
       this.register(data)
-        .then(() => {
+        .then((res) => {
           console.log('user berhasil ditambahkan')
-          // this.$router.push('login')
+          this.$router.push('login')
+          console.log(res)
         })
         .catch((err) => {
           if (err.response.status === 403) {
             alert('Email Sudah terdaftar')
-          } else {
-            alert('Semua data harus diisi')
+          } else if (err.response.result === '') {
+            alert('Data Asjkdjk')
           }
         })
     }
@@ -113,16 +135,19 @@ export default {
   /* border: 1px solid black; */
   display: inline-block;
   position: absolute;
-  top: 180px;
-  left: 720px;
+  top: 60px;
+  left: 600px;
   width: 480px;
   height: 250px;
+  width: 590px;
+  height: 250px;
+  z-index: 100;
 }
 .brand .title {
   /* border: 1px solid black; */
   font-family: 'Pacifico', cursive;
   display: block;
-  font-size: 80px;
+  font-size: 90px;
   color: rgb(73, 65, 65);
 }
 .brand .description {
@@ -137,8 +162,9 @@ export default {
 }
 .modal-dialog {
   /* border: 1px solid black; */
-  margin-top: 140px;
-  margin-right: 150px;
+  margin-top: 100px;
+  margin-left: -100px;
+  width: 450px;
   box-shadow: 10px 10px 10px 5px rgba(0, 0, 0, 0.25);
 }
 .line {
@@ -160,6 +186,26 @@ export default {
   position: absolute;
   width: 600px;
   left: 200px;
+}
+.img-brand2 {
+  background-image: url('https://raw.githubusercontent.com/alanard/web-slicing-kingscafe/master/assets/img/landingPage/content/backgroundcoffevektor.png');
+  background-size: cover;
+  width: 400px;
+  height: 400px;
+  position: absolute;
+  top: 210px;
+  left: 950px;
+}
+
+.login {
+  margin: 20px 0px 20px 9px;
+  font-size: 17px;
+}
+
+.login span {
+  margin-left: 30px;
+  color: blue;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 576px) {

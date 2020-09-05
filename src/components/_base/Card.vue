@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="image-card">
-      <img :src="image" alt />
+    <div class="image-card" :class="active? 'active' : ''">
+      <img :src="image" alt @click="$emit('select-product')" />
     </div>
     <div class="container">
       <div class="title-card id">{{id}}</div>
@@ -14,14 +14,14 @@
 <script>
 export default {
   name: 'Card',
-  props: ['name', 'price', 'id', 'image']
+  props: ['name', 'price', 'id', 'image', 'active']
 }
 </script>
 
 <style scoped>
 .container {
   /* border: 1px solid black; */
-  margin-left: 40px;
+  margin-left: -10px;
   width: 230px;
 }
 .image-card {
@@ -29,7 +29,8 @@ export default {
   width: 200px;
   height: 160px;
   border-radius: 10px 10px 0 0;
-  margin-left: 40px;
+  margin-left: 20px;
+  cursor: pointer;
 }
 .image-card img {
   width: 200px;
@@ -41,7 +42,7 @@ export default {
   position: relative;
   top: 3px;
   font-size: 17px;
-  left: -12px;
+  left: 15px;
 }
 .title-card.id {
   display: none;
@@ -50,10 +51,24 @@ export default {
   /* border: 1px solid black; */
   position: relative;
   top: 5px;
-  left: -12px;
+  left: 15px;
   font-size: 18px;
   font-family: 'Poppins', sans-serif;
   font-weight: bold;
+}
+
+.active {
+  filter: brightness(50%);
+  background-image: url('https://raw.githubusercontent.com/alanard/web-slicing-kingscafe/master/assets/img/logo-img/logout.png');
+  /* background-repeat: no-repeat; */
+  background-size: cover;
+
+  width: 200px;
+  height: 160px;
+  /* border: 4px solid black; */
+  /* z-index: 100;
+  position: relative; */
+  /* top: 20px; */
 }
 
 /* Tampilan tablet */

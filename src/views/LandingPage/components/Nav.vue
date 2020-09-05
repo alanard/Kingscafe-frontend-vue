@@ -60,12 +60,8 @@ export default {
   background: rgba(0, 0, 0, 0.7);
 }
 
-.nav.justify-content-end {
-  /* border: 1px solid rgb(221, 165, 165); */
-}
-
 .nav .nav-item {
-  border: 1px solid black;
+  /* border: 1px solid black; */
   font-family: 'Poppins', sans-serif;
   margin-left: 40px;
   color: rgb(189, 176, 176);
@@ -120,7 +116,7 @@ export default {
   }
 
   .nav .nav-item {
-    border: 1px solid black;
+    /* border: 1px solid black; */
     font-size: 11px;
     margin: 0 auto;
     padding: 0;

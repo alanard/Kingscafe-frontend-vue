@@ -1,10 +1,10 @@
 <template>
-    <div class="header">
-      <div class="nav search">
-        <div class="img-menu"></div>
-        <span>History</span>
-      </div>
+  <div class="header">
+    <div class="nav search">
+      <div class="img-menu"></div>
+      <span>History</span>
     </div>
+  </div>
 </template>
 
 <script>
@@ -34,11 +34,11 @@ export default {
   display: flex;
   flex: 2.85;
   background: #ffffff;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+  border-bottom: rgba(0, 0, 0, 0.25);
 }
 
 .header .nav.search .img-menu {
-  background-image: url("https://raw.githubusercontent.com/alanard/web-slicing-kingscafe/master/assets/img/menu1.png");
+  background-image: url('https://raw.githubusercontent.com/alanard/web-slicing-kingscafe/master/assets/img/menu1.png');
   position: relative;
   background-size: cover;
   width: 25px;
@@ -51,7 +51,7 @@ export default {
 .nav.search span {
   margin: auto;
   font-size: 25px;
-  font-family: "work sans", sans-serif;
+  font-family: 'work sans', sans-serif;
   font-weight: bold;
 }
 

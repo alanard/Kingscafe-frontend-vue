@@ -24,6 +24,7 @@ export default {
   height: 1000px;
   background-color: #ffff;
   background-color: #d0c2b6;
+  /* background-image: url('https://raw.githubusercontent.com/alanard/web-slicing-kingscafe/master/assets/img/landingPage/backgroundlandingpage2.png'); */
 }
 
 .main-menu .title-card {
@@ -50,7 +51,7 @@ export default {
 
 .main-menu .menu-card .card1 {
   /* border: 1px solid black; */
-  /* background-image: url(../img/landingPage/content/mainContent1.jfif); */
+  background-image: url('https://raw.githubusercontent.com/alanard/web-slicing-kingscafe/master/assets/img/landingPage/content/mainContent1.jfif');
   background-size: cover;
   background-position-x: center;
 
@@ -59,7 +60,7 @@ export default {
 }
 .main-menu .menu-card .card2 {
   /* border: 1px solid black; */
-  /* background-image: url(../img/landingPage/content/mainContent12.jfif); */
+  background-image: url('https://raw.githubusercontent.com/alanard/web-slicing-kingscafe/master/assets/img/landingPage/content/mainContent12.jfif');
   background-size: cover;
   background-position-x: center;
 
@@ -68,7 +69,7 @@ export default {
 }
 .main-menu .menu-card .card3 {
   /* border: 1px solid black; */
-  /* background-image: url(../img/landingPage/content/mainContent8.jfif); */
+  background-image: url('https://raw.githubusercontent.com/alanard/web-slicing-kingscafe/master/assets/img/landingPage/content/mainContent8.jfif');
   background-size: cover;
   background-position-x: center;
 
@@ -77,7 +78,7 @@ export default {
 }
 .main-menu .menu-card .card4 {
   /* border: 1px solid black; */
-  /* background-image: url(../img/landingPage/content/mainContent10.jfif); */
+  background-image: url('https://raw.githubusercontent.com/alanard/web-slicing-kingscafe/master/assets/img/landingPage/content/mainContent10.jfif');
   background-size: cover;
   background-position-x: center;
 
@@ -86,7 +87,7 @@ export default {
 }
 .main-menu .menu-card .card5 {
   /* border: 1px solid black; */
-  /* background-image: url(../img/landingPage/content/mainContent9.jfif); */
+  background-image: url('https://raw.githubusercontent.com/alanard/web-slicing-kingscafe/master/assets/img/landingPage/content/mainContent9.jfif');
   background-size: cover;
   background-position-x: -90px;
 

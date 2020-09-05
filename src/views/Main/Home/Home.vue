@@ -6,6 +6,7 @@
     <div class="content">
       <AsideLeft />
       <div class="main-content">
+        <!-- DropDown Order By Name || Price-->
         <div class="filter">
           <div class="dropdown">
             <a
@@ -18,7 +19,7 @@
               aria-expanded="false"
             >Order By</a>
 
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" v-custom="dropdown">
               <a class="dropdown-item" @click="OrderName">A - Z</a>
               <a class="dropdown-item" @click="OrderNameDesc">Z - A</a>
               <a class="dropdown-item" @click="OrderPriceMin">cheapest price</a>
@@ -32,22 +33,46 @@
             :image="product.image"
             :name="product.name"
             :price="product.price"
+            :active="checkProductActive(product.id)"
+            @select-product="setAddToCart(product)"
           />
         </div>
+        <!-- Pagination -->
+        <div>
+          <nav aria-label="...">
+            <ul class="pagination">
+              <li class="page-item disabled">
+                <a class="page-link" tabindex="-1" aria-disabled="true">Previous</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link">1</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link">2</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link">3</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link">Next</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </div>
-      <AsideRight />
+      <AsideRight :dataCart="dataCart" :activ="activ" />
     </div>
   </div>
 </template>
 
 <script>
 // import navbar from '../../../components/_base/Navbar'
+import Navbar from '../../../components/_base/Navbar'
 import AsideLeft from '../../../components/_base/Aside-left'
 import AsideRight from '../../../components/_base/Aside-right'
 import Card from '../../../components/_base/Card'
 // import axios from 'axios'
-import Navbar from '../../../components/_base/Navbar'
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: 'home',
@@ -60,29 +85,21 @@ export default {
   data() {
     return {
       // products: [],
-      username: '',
-      password: '',
-      search: ''
+      dropdown: 'ThisIsDropdown',
+      id: '',
+      name: '',
+      image: '',
+      price: '',
+      dataCart: [],
+      activ: false
     }
   },
   methods: {
-    // getAllProduct () {
-    //   axios
-    //     .get('http://localhost:4000/api/v1/products')
-    //     .then((res) => {
-    //       this.products = res.data.result
-    //     })
-    //     .catch(() => {
-    //       alert('Error Load Data')
-    //     })
-    // },
-    // handleLogin() {
-    //   const data = {
-    //     username: this.username,
-    //     password: this.password
-    //   }
-    //   this.login(data)
-    // },
+    checkProductActive(id) {
+      return this.getCart.find((item) => {
+        return item.id === id
+      })
+    },
     ...mapActions([
       'login',
       'getProducts',
@@ -91,6 +108,8 @@ export default {
       'getProductsByPricePlus',
       'getProductsByNameDesc'
     ]),
+    // Langsung saja diextraks karena tidak akan diolah lai jdi tidak perlu buat function lagi
+    ...mapMutations(['setAddToCart']),
     OrderName(e) {
       e.preventDefault()
       this.getProductsByName()
@@ -138,12 +157,12 @@ export default {
   },
   computed: {
     ...mapGetters({
-      products: 'products'
+      products: 'products',
+      getCart: 'getCart'
     })
   },
   mounted() {
     this.getProducts()
-    // this.getProductsByName()
   }
 }
 </script>
@@ -165,7 +184,7 @@ export default {
   /* border: 1px solid black; */
   background: rgba(190, 195, 202, 0.3);
   flex: 3.3;
-  overflow: auto;
+  overflow-x: hidden;
 }
 .main-content .card {
   border: 1px solid black;
@@ -183,7 +202,7 @@ export default {
 
 .filter {
   position: relative;
-  left: 850px;
+  left: 700px;
   margin-top: 10px;
 }
 

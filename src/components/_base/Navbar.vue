@@ -2,26 +2,33 @@
   <div class="header">
     <div class="nav search">
       <div class="img-menu"></div>
-      <input type="text" placeholder="FOOD ITEMS" v-on:keyup.enter="Search('')" />
-      <div class="img-src"></div>
+      <input type="text" id="search" placeholder="FOOD ITEMS" v-on:keyup="setSearch" />
+      <label class="img-src" for="search"></label>
       <div class="cart-togle"></div>
     </div>
     <div class="nav cart">
       <span>Cart</span>
-      <div class="img-cart"></div>
+      <div class="count">{{countCart}}</div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'Navbar',
-  data() {
-    return {
-      search: ''
+  methods: {
+    ...mapActions(['handleSearch']),
+    setSearch(e) {
+      this.handleSearch(e.target.value)
     }
   },
-  methods: {}
+  computed: {
+    ...mapGetters({
+      // Untuk menambah nilai di jika cart di klik
+      countCart: 'countCart'
+    })
+  }
 }
 </script>
 
@@ -43,7 +50,7 @@ export default {
 
 .nav.search {
   display: flex;
-  flex: 2.85;
+  flex: 2.43;
   background: #ffffff;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
 }
@@ -78,33 +85,43 @@ export default {
   height: 28px;
   top: 30px;
   right: 50px;
+  cursor: pointer;
 }
 
 /* Start Nav Cart */
 .nav.cart {
   display: flex;
   z-index: 1;
+  /* width: 200px; */
   box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.25);
   border: 1px solid #e7e2e2;
 }
 
 .nav.cart span {
   margin: auto;
-  font-size: 23px;
+  font-size: 25px;
   font-family: 'airbnb', sans-serif;
   font-weight: bolder;
+
+  position: relative;
 }
 
-.header .nav.cart .img-cart {
+.header .nav.cart .count {
   /* Hanya untuk membantu melihat garis awal */
   /* border: 1px solid black; */
-  background-image: url('https://raw.githubusercontent.com/alanard/web-slicing-kingscafe/master/assets/img/ikon-cart.jpg');
-  background-size: cover;
+  background: #57cad5;
+  border-radius: 100%;
   position: relative;
-  width: 20px;
-  height: 20px;
-  right: 120px;
-  top: 28px;
+  top: 26px;
+  left: -153px;
+
+  width: 27px;
+  height: 28px;
+
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
 }
 
 /* End Header */

@@ -35,8 +35,10 @@ export default {
 .main-content2 {
   /* border: 1px solid black; */
   width: 100%;
-  height: 1000px;
+  height: 1200px;
   background-color: #997357;
+  background-image: url('https://raw.githubusercontent.com/alanard/web-slicing-kingscafe/master/assets/img/landingPage/backgroundlandingpage5.png');
+  background-size: 800px;
 }
 
 .main-content2 .title {
@@ -47,7 +49,7 @@ export default {
   width: 500px;
 
   position: relative;
-  top: 450px;
+  top: 500px;
   left: 140px;
   z-index: 100;
 
@@ -71,8 +73,8 @@ export default {
 
 .card-group {
   /* border: 1px solid black; */
-  width: 550px;
-  height: 550px;
+  width: 650px;
+  height: 650px;
   position: relative;
   left: 600px;
   top: 70px;
@@ -98,28 +100,28 @@ export default {
 }
 
 .card-group .card-image1 {
-  /* background-image: url(../img/landingPage/content/grupcard1.jpg); */
+  background-image: url('https://raw.githubusercontent.com/alanard/web-slicing-kingscafe/master/assets/img/landingPage/content/grupcard1.jpg');
   background-size: cover;
   background-position-x: -80px;
   margin: 20px 10px 10px 20px;
   flex: 1;
 }
 .card-group .card-image2 {
-  /* background-image: url(../img/landingPage/content/grupcard2.jpg); */
+  background-image: url('https://raw.githubusercontent.com/alanard/web-slicing-kingscafe/master/assets/img/landingPage/content/grupcard2.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   margin: 20px 20px 10px 10px;
   flex: 1;
 }
 .card-group .card-image3 {
-  /* background-image: url(../img/landingPage/content/grupcard3.jpg); */
+  background-image: url('https://raw.githubusercontent.com/alanard/web-slicing-kingscafe/master/assets/img/landingPage/content/grupcard3.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   margin: 10px 10px 20px 20px;
   flex: 1;
 }
 .card-group .card-image4 {
-  /* background-image: url(../img/landingPage/content/grupcard4.jpg); */
+  background-image: url('https://raw.githubusercontent.com/alanard/web-slicing-kingscafe/master/assets/img/landingPage/content/grupcard4.jpg');
   background-size: cover;
   background-position-x: -20px;
   background-repeat: no-repeat;

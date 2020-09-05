@@ -25,21 +25,25 @@ export default {
 .main-content3 {
   /* border: 1px solid black; */
   width: 100%;
-  height: 800px;
+  height: 1100px;
   background-color: #d0c2b6;
+  background-image: url('https://raw.githubusercontent.com/alanard/web-slicing-kingscafe/master/assets/img/landingPage/backgroundlandingpage3.png');
+  background-repeat: no-repeat;
+  background-position-x: 260px;
+  background-position-y: -70px;
 }
 
 .main-content3 .img-ourcafe {
-  /* background-image: url(../img/landingPage/content/ourcafe.jpg); */
+  background-image: url('https://raw.githubusercontent.com/alanard/web-slicing-kingscafe/master/assets/img/landingPage/content/ourcafe.jpg');
   background-size: cover;
   background-position-x: -50px;
-  width: 500px;
-  height: 500px;
+  width: 550px;
+  height: 550px;
 
   display: inline-block;
   position: relative;
-  left: 200px;
-  top: 90px;
+  left: 100px;
+  top: 200px;
 }
 
 .main-content3 .title-ourcafe {
@@ -47,11 +51,13 @@ export default {
   border-radius: 10px;
   background-color: aliceblue;
   display: inline-block;
-  width: 500px;
+  width: 550px;
+  height: 300px;
 
   position: relative;
-  bottom: 50px;
-  left: 150px;
+  bottom: 40px;
+  left: 60px;
+  /* z-index: 10; */
 
   box-shadow: 10px 10px 10px 5px rgba(0, 0, 0, 0.25);
 }

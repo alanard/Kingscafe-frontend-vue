@@ -10,7 +10,9 @@ export default new Vuex.Store({
     register: {},
     token: localStorage.getItem('token') || null,
     products: [],
-    postProduct: {}
+    postProduct: {},
+    history: [],
+    carts: []
   },
   mutations: {
     setUser(state, payload) {
@@ -23,20 +25,36 @@ export default new Vuex.Store({
     setProducts(state, payload) {
       state.products = payload
     },
-    setProductsByName(state, payload) {
-      state.products = payload
+    // History
+    setGetHistory(state, payload) {
+      state.history = payload
     },
-    setProductsByNameDesc(state, payload) {
-      state.products = payload
+    // Carts
+    setAddToCart(state, payload) {
+      const isCart = state.carts.find((item) => {
+        return item.id === payload.id
+      })
+      if (!isCart) {
+        const item = payload
+        item.count = 1
+        state.carts.push(item)
+      } else {
+        state.carts = state.carts.filter((item) => {
+          return item.id !== payload.id
+        })
+      }
     },
-    setProductsByPriceMin(state, payload) {
-      state.products = payload
-    },
-    setProductsByPricePlus(state, payload) {
-      state.products = payload
-    },
-    postProduct(state, payload) {
-      state.postProduct = payload
+    setPlus(state, payload) {
+      const isPlus = state.carts.map((item) => {
+        return item.id === payload.id
+      })
+      if (isPlus) {
+        const item = payload
+        item.count = 1
+        state.carts.push(item)
+      } else {
+
+      }
     }
   },
   actions: {
@@ -65,7 +83,7 @@ export default new Vuex.Store({
     login(setex, payload) {
       console.log(payload)
       return new Promise((resolve, reject) => {
-        axios.post('http://localhost:4100/api/v1/users/login', payload)
+        axios.post(`${process.env.VUE_APP_BASE_URL}api/v1/users/login`, payload)
           .then((res) => {
             if (res.data.status_code !== 200) {
               alert('email or password not correct')
@@ -73,6 +91,7 @@ export default new Vuex.Store({
               console.log(res)
               setex.commit('setUser', res.data.result)
               localStorage.setItem('token', res.data.result.token)
+              axios.defaults.headers.common.Authorization = `Bearer ${setex.state.token}`
               resolve(res.data.result[0])
             }
           }).catch((err) => {
@@ -83,7 +102,7 @@ export default new Vuex.Store({
     },
     register(setex, payload) {
       return new Promise((resolve, reject) => {
-        axios.post('http://localhost:4100/api/v1/users/register', payload)
+        axios.post(`${process.env.VUE_APP_BASE_URL}api/v1/users/register`, payload)
           .then((res) => {
             resolve(res.data.result)
           }).catch((err) => {
@@ -93,7 +112,7 @@ export default new Vuex.Store({
     },
     getProducts(setex) {
       return new Promise((resolve, reject) => {
-        axios.get('http://localhost:4100/api/v1/products')
+        axios.get(`${process.env.VUE_APP_BASE_URL}api/v1/products`)
           .then((res) => {
             // console.log(res)
             setex.commit('setProducts', res.data.result)
@@ -106,10 +125,10 @@ export default new Vuex.Store({
     },
     getProductsByName(setex) {
       return new Promise((resolve, reject) => {
-        axios.get('http://localhost:4100/api/v1/products?orderby=name&sort=asc')
+        axios.get(`${process.env.VUE_APP_BASE_URL}api/v1/products?orderby=name&sort=asc`)
           .then((res) => {
             // console.log(res)
-            setex.commit('setProductsByName', res.data.result)
+            setex.commit('setProducts', res.data.result)
             resolve(res.data.result)
           })
           .catch((err) => {
@@ -119,10 +138,10 @@ export default new Vuex.Store({
     },
     getProductsByNameDesc(setex) {
       return new Promise((resolve, reject) => {
-        axios.get('http://localhost:4100/api/v1/products?orderby=name&sort=desc')
+        axios.get(`${process.env.VUE_APP_BASE_URL}api/v1/products?orderby=name&sort=desc`)
           .then((res) => {
             // console.log(res)
-            setex.commit('setProductsByNameDesc', res.data.result)
+            setex.commit('setProducts', res.data.result)
             resolve(res.data.result)
           })
           .catch((err) => {
@@ -132,10 +151,10 @@ export default new Vuex.Store({
     },
     getProductsByPriceMin(setex) {
       return new Promise((resolve, reject) => {
-        axios.get('http://localhost:4100/api/v1/products?orderby=price&sort=asc')
+        axios.get(`${process.env.VUE_APP_BASE_URL}api/v1/products?orderby=price&sort=asc`)
           .then((res) => {
             // console.log(res)
-            setex.commit('setProductsByPriceMin', res.data.result)
+            setex.commit('setProducts', res.data.result)
             resolve(res.data.result)
           })
           .catch((err) => {
@@ -145,10 +164,10 @@ export default new Vuex.Store({
     },
     getProductsByPricePlus(setex) {
       return new Promise((resolve, reject) => {
-        axios.get('http://localhost:4100/api/v1/products?orderby=price&sort=desc')
+        axios.get(`${process.env.VUE_APP_BASE_URL}api/v1/products?orderby=price&sort=desc`)
           .then((res) => {
             // console.log(res)
-            setex.commit('setProductsByPricePlus', res.data.result)
+            setex.commit('setProducts', res.data.result)
             resolve(res.data.result)
           })
           .catch((err) => {
@@ -156,11 +175,49 @@ export default new Vuex.Store({
           })
       })
     },
-    postProduct(setex, payload) {
+    handleSearch(setex, payload) {
       return new Promise((resolve, reject) => {
-        axios.post('http://localhost:4100/api/v1/products', payload)
+        axios.get(`${process.env.VUE_APP_BASE_URL}api/v1/products?search=${payload}`)
           .then((res) => {
+            // console.log(res)
+            setex.commit('setProducts', res.data.result)
             resolve(res.data.result)
+          })
+          .catch((err) => {
+            reject(err)
+          })
+      })
+    },
+    postProducts(setex, payload) {
+      return new Promise((resolve, reject) => {
+        axios.post(`${process.env.VUE_APP_BASE_URL}api/v1/products`, payload)
+          .then((res) => {
+            console.log(res)
+            resolve(res.data.result)
+          }).catch((err) => {
+            reject(err)
+          })
+      })
+    },
+    // Update Product
+    patchProduct(setex, payload) {
+      return new Promise((resolve, reject) => {
+        axios.patch(`${process.env.VUE_APP_BASE_URL}api/v1/products/` + payload.id, payload.data)
+          .then((res) => {
+            console.log(res)
+            resolve(res.data.result)
+          }).catch((err) => {
+            reject(err)
+          })
+      })
+    },
+    // Get Data History
+    getHistory(setex) {
+      return new Promise((resolve, reject) => {
+        axios.get(`${process.env.VUE_APP_BASE_URL}api/v1/histories`)
+          .then((res) => {
+            setex.commit('setGetHistory', res.data.result)
+            resolve(res)
           }).catch((err) => {
             reject(err)
           })
@@ -180,17 +237,15 @@ export default new Vuex.Store({
     isPostProducts(state) {
       return state.postProduct
     },
-    isSetProductsByName(state) {
-      return state.products
+    getCart(state) {
+      console.log(state.carts)
+      return state.carts
     },
-    isSetProductsByNameDesc(state) {
-      return state.products
+    countCart(state) {
+      return state.carts.length
     },
-    isSetProductsByPriceMin(state) {
-      return state.products
-    },
-    isSetProductsByPricePlus(state) {
-      return state.products
+    isSetHistory(state) {
+      return state.history
     }
   },
   modules: {}

@@ -4,6 +4,7 @@
     <div class="clipboard-image" @click="linkProduct"></div>
     <div class="add-image"></div>
     <div class="history-image" @click="linkHistory"></div>
+    <div class="logout-image" @click="linkLogout"></div>
   </div>
 </template>
 
@@ -19,7 +20,8 @@ export default {
     },
     linkProduct() {
       this.$router.push('product')
-    }
+    },
+    linkLogout() {}
   }
 }
 </script>
@@ -32,7 +34,7 @@ export default {
   /* display: flex; */
   /* flex-wrap: nowrap; */
   background: #ffffff;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+  box-shadow: 10px 6px 10px rgba(0, 0, 0, 0.25);
 }
 
 .aside-left .fork-image {
@@ -43,7 +45,7 @@ export default {
   position: relative;
   width: 30px;
   height: 30px;
-  top: 23px;
+  top: 20px;
   left: 25px;
   cursor: pointer;
 }
@@ -54,7 +56,7 @@ export default {
   background-size: cover;
   width: 30px;
   height: 30px;
-  top: 80px;
+  top: 50px;
   left: 25px;
   cursor: pointer;
 }
@@ -66,7 +68,7 @@ export default {
   position: relative;
   width: 30px;
   height: 30px;
-  top: 150px;
+  top: 80px;
   left: 25px;
   cursor: pointer;
 }
@@ -78,7 +80,19 @@ export default {
   position: relative;
   width: 32px;
   height: 32px;
-  top: 200px;
+  top: 100px;
+  left: 27px;
+  cursor: pointer;
+}
+
+.aside-left .logout-image {
+  background-image: url('https://raw.githubusercontent.com/alanard/web-slicing-kingscafe/master/assets/img/logo-img/logout.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  width: 32px;
+  height: 40px;
+  top: 150px;
   left: 27px;
   cursor: pointer;
 }
