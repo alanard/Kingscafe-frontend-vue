@@ -24,8 +24,8 @@
 - And others
 
 ### Requirements
-* [AngularJS] - HTML enhanced for web apps!
-* [Ace Editor] - awesome web-based text editor
+* [Npm](https://npm.org/) - HTML enhanced for web apps!
+* [vue.js](https://vuejs.org/) - awesome web-based text editor
 * [markdown-it] - Markdown parser done right. Fast and easy to extend.
 * [Twitter Bootstrap] - great UI boilerplate for modern web apps
 
