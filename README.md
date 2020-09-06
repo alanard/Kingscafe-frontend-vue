@@ -52,7 +52,7 @@ Type npm run serve if you use npm, or yarn serve if you use yarn, for run this a
 `
 $ cp .env.example .env
 `
-3
+`
 $ nano .env
 `
 ### Set API KEY
