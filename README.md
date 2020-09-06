@@ -24,18 +24,18 @@
 - And others
 
 ### Requirements
-`````````````````````````````
+````
 * [npm](https://www.npmjs.com/package/module)
-`````````````````````````````
-`````````````````````````````
+````
+````
 * [vue-js](https://vuejs.org/)
-`````````````````````````````
-`````````````````````````````
-* [vue-js-cli] (https://cli.vuejs.org/)
-`````````````````````````````
-`````````````````````````````
-* [backend-king's-cafe] (https://cli.vuejs.org/)
-`````````````````````````````
+````
+````
+* [vue-js-cli](https://cli.vuejs.org/)
+````
+````
+* [backend-king's-cafe](https://cli.vuejs.org/)
+````
 
 ### Usage for development
 Open your terminal or command prompt
