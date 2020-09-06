@@ -24,10 +24,18 @@
 - And others
 
 ### Requirements
-npm
-Vue.js
-Vue.js Cli
-Backend King's Cafe
+`
+-npm
+`
+`
+-Vue.js
+`
+`
+-Vue.js Cli
+`
+`
+-Backend King's Cafe
+`
 
 ### Usage for development
 Open your terminal or command prompt
