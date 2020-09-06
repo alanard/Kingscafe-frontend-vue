@@ -24,18 +24,10 @@
 - And others
 
 ### Requirements
-`
--npm
-`
-`
--Vue.js
-`
-`
--Vue.js Cli
-`
-`
--Backend King's Cafe
-`
+* [AngularJS] - HTML enhanced for web apps!
+* [Ace Editor] - awesome web-based text editor
+* [markdown-it] - Markdown parser done right. Fast and easy to extend.
+* [Twitter Bootstrap] - great UI boilerplate for modern web apps
 
 ### Usage for development
 Open your terminal or command prompt
