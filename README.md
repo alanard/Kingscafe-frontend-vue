@@ -1,6 +1,6 @@
 # King's Cafe Website
 <p align="center">
-<img align="center" src="readme_image/kingscafe_logos.PNG" width="400" height="250"> <img align="center" src="readme_image/vuejs-300x300.png" width="250" height="180">
+<img align="center" src="readme_image/kingscafe_logos.PNG" width="400" height="250"> <img align="center" src="readme_image/vuejs-300x300.png" width="230" height="180">
 </p>
 
 ## Table of Contents
@@ -24,18 +24,21 @@
 - And others
 
 ### Requirements
-```
-[KUBERNETES.md](https://github.com/joemccann/dillinger/blob/master/KUBERNETES.md)
-```
-```
-[vue-js](https://vuejs.org/)
-```
-```
-[vue-js-cli](https://cli.vuejs.org/)
-```
-```
-[backend-king's-cafe](https://cli.vuejs.org/)
-```
+`
+npm
+`
+
+`
+vue-js
+`
+
+`
+vue-js-cli
+`
+
+`
+backend-king'sCafe
+`
 
 ### Usage for development
 Open your terminal or command prompt
