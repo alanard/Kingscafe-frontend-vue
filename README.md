@@ -1,6 +1,6 @@
 # King's Cafe Website
 <p align="center">
-<img align="center" src="readme_image/kingscafe_logos.PNG" width="400" height="220"> <img align="center" src="readme_image/vuejs-300x300.png" width="250" height="160">
+<img align="center" src="readme_image/kingscafe_logos.PNG" width="400" height="250"> <img align="center" src="readme_image/vuejs-300x300.png" width="250" height="180">
 </p>
 
 ## Table of Contents
@@ -35,4 +35,38 @@ Type git clone https://github.com/alanard/Kingscafe-frontend-vue
 Open the folder and type npm install for install dependencies
 Create Environment Variable here
 Before run this, you must run backend first
-Type react-native run-android for run this app. Make sure your device is connected with debugging mode.
+Type npm run serve if you use npm, or yarn serve if you use yarn, for run this app. Make sure your device is connected with debugging mode.
+
+### Create Environment Variable
+`
+$ cp .env.example .env
+`
+3
+$ nano .env
+`
+### Set API KEY
+`
+VUE_APP_BASE_URL=YOUR_HOST_URL
+`
+## Screenshots
+### Landing Page
+<p align="center">
+<img align="center" src="readme_image/landingpage_navbar.PNG" width="470" height="230"> <img align="center" src="readme_image/landingpage_about_us.PNG" width="470" height="230">
+</p>
+<p align="center">
+<img align="center" src="readme_image/Landingpage_map_location.PNG" width="470" height="230"> <img align="center" src="readme_image/landingpage_ekstra_ordinary_menus.PNG" width="470" height="230">
+</p>
+<p align="center">
+<img align="center" src="readme_image/landingpage_most_popular.PNG" width="470" height="230"> <img align="center" src="readme_image/landingpage_cafe_location.PNG" width="470" height="230">
+</p>
+<p align="center">
+<img align="center" src="readme_image/landingpage_music.PNG" width="470" height="230">
+</p>
+
+### Home
+<p align="center">
+<img align="center" src="readme_image/home/Register.PNG" width="470" height="230"> <img align="center" src="readme_image/home/login.PNG" width="470" height="230">
+</p>
+<p align="center">
+<img align="center" src="readme_image/home/home.PNG" width="470" height="230"> <img align="center" src="readme_image/home/home-add-cart.PNG" width="470" height="230">
+</p>
