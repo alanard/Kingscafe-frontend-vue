@@ -24,21 +24,10 @@
 - And others
 
 ### Requirements
-`
-npm
-`
-
-`
-vue-js
-`
-
-`
-vue-js-cli
-`
-
-`
-backend-king'sCafe
-`
+- [npm](https://www.npmjs.com/package/module)
+- [vue.js](https://www.vuejs.org)
+- [vue.js-cli](https://cli.vuejs.org)
+- [backend-kingsCafe](https://github.com/alanard/Kingscafe-backend-express/)
 
 ### Usage for development
 Open your terminal or command prompt
