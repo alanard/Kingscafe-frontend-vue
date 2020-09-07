@@ -5,7 +5,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Add New Product</h5>
+            <h5 class="modal-title">{{data.id ? 'Update Product' : 'Add New Product'}}</h5>
             <button type="button" class="close" @click="$emit('close-modal')">
               <span aria-hidden="true">&times;</span>
             </button>

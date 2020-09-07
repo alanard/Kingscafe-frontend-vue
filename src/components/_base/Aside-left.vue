@@ -21,7 +21,9 @@ export default {
     linkProduct() {
       this.$router.push('product')
     },
-    linkLogout() {}
+    linkLogout() {
+      this.$router.push('/')
+    }
   }
 }
 </script>
@@ -80,7 +82,7 @@ export default {
   position: relative;
   width: 32px;
   height: 32px;
-  top: 100px;
+  top: 110px;
   left: 27px;
   cursor: pointer;
 }
@@ -92,8 +94,8 @@ export default {
   position: relative;
   width: 32px;
   height: 40px;
-  top: 150px;
-  left: 27px;
+  top: 140px;
+  left: 25px;
   cursor: pointer;
 }
 

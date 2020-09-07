@@ -18,7 +18,7 @@
             <div class="name-description">{{item.name}}</div>
             <div class="button">
               <div class="buttonmin">-</div>
-              <div class="count">{{countCart}}</div>
+              <div class="count">1</div>
               <div class="buttonplus" @click="item.price*countCart">+</div>
             </div>
             <div class="price-description">Rp. {{item.price}}</div>
@@ -31,7 +31,7 @@
         <div class="description">
           <div class="total">Total:</div>
           <div class="ppn">*Belum termasuk ppn</div>
-          <div class="price">13000</div>
+          <div class="price">Rp. 105.000*</div>
         </div>
         <div class="checkout">
           <button class="yes" @click="showModalCheckout">Checkout</button>
@@ -46,6 +46,7 @@
         tabindex="-1"
         role="dialog"
         aria-labelledby="exampleModalCenterTitle"
+        v-show="isShow"
       >
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
@@ -133,7 +134,7 @@ export default {
 .aside-right {
   /* border: 1px solid #e7dcdc; */
   /* flex: 1.1; */
-  width: 400px;
+  width: 395px;
   box-sizing: border-box;
   background: #ffffff;
   position: relative;
@@ -142,7 +143,7 @@ export default {
 
 .img-sidecart {
   box-sizing: border-box;
-  background-image: url('https://raw.githubusercontent.com/alanard/web-slicing-kingscafe/master/assets/img/logo-img/tick.png');
+  background-image: url('https://raw.githubusercontent.com/alanard/web-slicing-kingscafe/master/assets/img/img-sidecart.png');
   background-size: cover;
   position: relative;
   top: 60px;
@@ -179,24 +180,23 @@ span.message-cart {
   display: flex;
   /* border: 1px solid black; */
   height: 120px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   z-index: -100;
 }
 
 .aside-right .img {
   width: 130px;
   height: 100px;
-  /* border: 1px solid black; */
   background-size: cover;
 
-  margin-left: 18px;
-  margin-right: 13px;
+  margin-left: 20px;
+  margin-right: 20px;
   margin-top: 10px;
   flex: 1;
 }
 
 .aside-right .img img {
-  width: 130px;
+  width: 120px;
   height: 100px;
 }
 
@@ -221,10 +221,10 @@ span.message-cart {
   /* border: 1px solid black; */
   display: flex;
   flex-direction: row;
-  width: 120px;
+  width: 100px;
   height: 35px;
   position: relative;
-  top: 30px;
+  top: 40px;
 }
 
 .aside-right .description .button .buttonmin {
@@ -261,8 +261,8 @@ span.message-cart {
   /* border: 1px solid black; */
   position: relative;
   top: -8px;
-  width: 110px;
-  left: 150px;
+  width: 90px;
+  left: 140px;
   font-size: 18px;
   font-weight: 600;
 }
@@ -273,6 +273,7 @@ span.message-cart {
   /* border: 1px solid black; */
   position: relative;
   bottom: -80px;
+  padding: 0px 15px 0px 15px;
 }
 
 .button .description .total {
@@ -283,7 +284,7 @@ span.message-cart {
 }
 .button .description .ppn {
   /* border: 1px solid black; */
-
+  margin-top: 5px;
   font-weight: 600;
 }
 .button .description .price {
@@ -291,7 +292,7 @@ span.message-cart {
   position: relative;
   width: 150px;
   top: -57px;
-  left: 245px;
+  left: 220px;
 
   text-align: right;
   font-size: 20px;
@@ -305,6 +306,7 @@ span.message-cart {
   top: 54px;
   display: flex;
   flex-direction: column;
+  margin: 8px 10px 0px 10px;
 }
 
 .button .checkout .yes {

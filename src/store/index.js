@@ -1,8 +1,11 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import Router from '../router/index'
 
 Vue.use(Vuex)
+
+// axios.defaults.headers.common.Authorization = `Bearer ${store.state.token}`
 
 export default new Vuex.Store({
   state: {
@@ -18,6 +21,9 @@ export default new Vuex.Store({
     setUser(state, payload) {
       state.user = payload
       state.token = payload.token
+    },
+    setToken(state, payload) {
+      state.token = payload
     },
     setRegister(state, payload) {
       state.register = payload
@@ -58,7 +64,7 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    interceptorsResponse() {
+    interceptorsResponse(setex) {
       axios.interceptors.response.use(function (response) {
         // Any status code that lie within the range of 2xx cause this function to trigger
         // Do something with response data
@@ -67,6 +73,18 @@ export default new Vuex.Store({
         console.log(error)
         // Any status codes that falls outside the range of 2xx cause this function to trigger
         // Do something with response error
+        console.log(error.response)
+        if (error.response.status === 401 && error.response.data.result === 'Invalid Token') {
+          localStorage.removeItem('token')
+          setex.commit('setToken', null)
+          Router.push('/')
+          alert('Invalid Token')
+        } else if (error.response.status === 401 && error.response.data.result === 'Token Expired') {
+          localStorage.removeItem('token')
+          setex.commit('setToken', null)
+          Router.push('/')
+          alert('Maaf Session Sudah Habis Silahkan Login Kembali')
+        }
         return Promise.reject(error)
       })
     },
@@ -91,7 +109,7 @@ export default new Vuex.Store({
               console.log(res)
               setex.commit('setUser', res.data.result)
               localStorage.setItem('token', res.data.result.token)
-              axios.defaults.headers.common.Authorization = `Bearer ${setex.state.token}`
+              // axios.defaults.headers.common.Authorization = `Bearer ${setex.state.token}`
               resolve(res.data.result[0])
             }
           }).catch((err) => {

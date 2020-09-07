@@ -73,8 +73,8 @@ export default {
 
 .card-group {
   /* border: 1px solid black; */
-  width: 650px;
-  height: 650px;
+  width: 600px;
+  height: 600px;
   position: relative;
   left: 600px;
   top: 70px;

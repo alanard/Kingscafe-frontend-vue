@@ -44,7 +44,7 @@
           <div class="line"></div>
           <div class="register-text">Do not have an account?</div>
           <div class="form-group">
-            <div type="submit" class="btn register btn-info btn-lg" @click="linkRegister">Register</div>
+            <div type="submit" class="btn reg btn-info btn-lg" @click="linkRegister">Register</div>
           </div>
         </div>
       </div>
@@ -115,6 +115,8 @@ export default {
   font-size: 110px;
   color: rgb(73, 65, 65);
   z-index: 100;
+
+  text-shadow: 0px 10px 10px rgb(104, 88, 88);
 }
 .brand .description {
   position: relative;
@@ -137,16 +139,20 @@ export default {
   width: 80%;
   margin: auto;
 }
-.btn.register {
+.btn.reg {
   margin-left: 50%;
   margin-top: 20px;
-  width: 200px;
+  width: 180px;
+  height: 40px;
   transform: translateX(-50%);
-  background-color: rgb(42, 44, 42);
+  padding-top: 6px;
+  background: #f24f8a;
+  font-size: 16px;
 }
 
 div .register-text {
   /* border: 1px solid black; */
+  text-align: center;
   margin: 25px 35px 0px 35px;
   font-weight: bold;
   color: gray;
@@ -193,7 +199,7 @@ div .register-text {
     width: 80%;
     margin: auto;
   }
-  .btn.register {
+  .btn {
     margin-left: 50%;
     margin-top: 20px;
     width: 200px;

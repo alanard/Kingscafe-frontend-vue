@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <router-link to="/"></router-link>
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
@@ -17,10 +17,11 @@ import { mapActions } from 'vuex'
 export default {
   name: 'App',
   methods: {
-    ...mapActions(['interceptorsRequest'])
+    ...mapActions(['interceptorsRequest', 'interceptorsResponse'])
   },
-  mounted () {
-    // this.interceptorsRequest()
+  created() {
+    this.interceptorsRequest()
+    this.interceptorsResponse()
   }
 }
 </script>

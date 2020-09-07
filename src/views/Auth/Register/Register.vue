@@ -66,8 +66,8 @@
 
               <div class="form-group">
                 <div class="login">
-                  Sudah punya akun?
-                  <span @click="linkLogin">login</span>
+                  Do you have an account?
+                  <span @click="linkLogin">Login</span>
                 </div>
                 <div
                   type="submit"
@@ -120,9 +120,9 @@ export default {
         })
         .catch((err) => {
           if (err.response.status === 403) {
-            alert('Email Sudah terdaftar')
+            alert('Email Already Redistered, Please Login!')
           } else if (err.response.result === '') {
-            alert('Data Asjkdjk')
+            alert('Data Harus diisi')
           }
         })
     }
@@ -149,6 +149,8 @@ export default {
   display: block;
   font-size: 90px;
   color: rgb(73, 65, 65);
+
+  text-shadow: 0px 8px 10px rgb(104, 88, 88);
 }
 .brand .description {
   position: relative;
@@ -159,6 +161,8 @@ export default {
   /* display: block; */
   /* text-align: right; */
   color: rgb(73, 65, 65);
+
+  text-shadow: 0px 5px 5px rgb(167, 146, 146);
 }
 .modal-dialog {
   /* border: 1px solid black; */
@@ -198,13 +202,19 @@ export default {
 }
 
 .login {
-  margin: 20px 0px 20px 9px;
+  margin: 10px 140px 10px 5px;
   font-size: 17px;
+  text-align: center;
+  font-weight: bold;
+  color: gray;
 }
 
 .login span {
-  margin-left: 30px;
-  color: blue;
+  margin-left: 5px;
+  text-align: center;
+  /* margin: 25px 35px 0px 35px; */
+  font-weight: bold;
+  color: rgb(67, 117, 224);
   cursor: pointer;
 }
 

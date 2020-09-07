@@ -29,19 +29,21 @@ export default {
   width: 200px;
   height: 160px;
   border-radius: 10px 10px 0 0;
-  margin-left: 20px;
+  margin-left: 10px;
   cursor: pointer;
+  margin-bottom: 20px;
 }
 .image-card img {
-  width: 200px;
-  height: 160px;
+  width: 220px;
+  height: 180px;
 }
 .title-card {
   /* border: 1px solid black; */
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Poppins', sans-serif;
   position: relative;
+  font-weight: bold;
   top: 3px;
-  font-size: 17px;
+  font-size: 18px;
   left: 15px;
 }
 .title-card.id {
