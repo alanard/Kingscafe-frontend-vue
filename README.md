@@ -48,16 +48,16 @@ VUE_APP_BASE_URL=YOUR_HOST_URL
 `
 ## Screenshots
 ### Landing Page
-<p align="center">
+<p>
 <img src="readme_image/landingpage_navbar.PNG" width="420" height="180"> <img src="readme_image/landingpage_about_us.PNG" width="420" height="180">
 </p>
-<p align="center">
+<p>
 <img src="readme_image/Landingpage_map_location.PNG" width="420" height="180"> <img src="readme_image/landingpage_ekstra_ordinary_menus.PNG" width="420" height="180">
 </p>
-<p align="center">
+<p>
 <img src="readme_image/landingpage_most_popular.PNG" width="420" height="180"> <img src="readme_image/landingpage_cafe_location.PNG" width="420" height="180">
 </p>
-<p align="center">
+<p>
 <img align="center" src="readme_image/landingpage_music.PNG" width="420" height="180">
 </p>
 
