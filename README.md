@@ -47,7 +47,7 @@ $ nano .env
 VUE_APP_BASE_URL=YOUR_HOST_URL
 `
 ## Screenshots
-### Landing Page
+<p align="center">
 <img src="readme_image/landingpage_navbar.PNG" width="250" height="120"> <img src="readme_image/landingpage_about_us.PNG" width="250" height="120">
 <img src="readme_image/Landingpage_map_location.PNG" width="250" height="120"> <img src="readme_image/landingpage_ekstra_ordinary_menus.PNG" width="250" height="120">
 <img src="readme_image/landingpage_most_popular.PNG" width="250" height="120"> <img src="readme_image/landingpage_cafe_location.PNG" width="250" height="120">
@@ -55,7 +55,7 @@ VUE_APP_BASE_URL=YOUR_HOST_URL
 <img src="readme_image/home/login.PNG" width="250" height="140"> <img src="readme_image/home/home.PNG" width="250" height="120"> 
 <img src="readme_image/home/home-add-cart.PNG" width="250" height="120"> <img src="readme_image/home/Products.PNG" width="250" height="120"> 
 <img src="readme_image/home/products-add.PNG" width="250" height="120"> <img src="readme_image/home/products-update.PNG" width="250" height="120">
-
+</p>
 
 ### Related Project (Backend)
 
