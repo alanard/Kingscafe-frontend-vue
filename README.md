@@ -49,32 +49,32 @@ VUE_APP_BASE_URL=YOUR_HOST_URL
 ## Screenshots
 ### Landing Page
 <p align="center">
-<img align="left" src="readme_image/landingpage_navbar.PNG" width="440" height="200"> <img align="right" src="readme_image/landingpage_about_us.PNG" width="440" height="200">
+<img src="readme_image/landingpage_navbar.PNG" width="420" height="180"> <img src="readme_image/landingpage_about_us.PNG" width="420" height="180">
 </p>
 <p align="center">
-<img align="left" src="readme_image/Landingpage_map_location.PNG" width="440" height="200"> <img align="right" src="readme_image/landingpage_ekstra_ordinary_menus.PNG" width="440" height="200">
+<img src="readme_image/Landingpage_map_location.PNG" width="420" height="180"> <img src="readme_image/landingpage_ekstra_ordinary_menus.PNG" width="420" height="180">
 </p>
 <p align="center">
-<img align="left" src="readme_image/landingpage_most_popular.PNG" width="440" height="200"> <img align="right" src="readme_image/landingpage_cafe_location.PNG" width="440" height="200">
+<img src="readme_image/landingpage_most_popular.PNG" width="420" height="180"> <img src="readme_image/landingpage_cafe_location.PNG" width="420" height="180">
 </p>
 <p align="center">
-<img align="center" src="readme_image/landingpage_music.PNG" width="440" height="200">
+<img align="center" src="readme_image/landingpage_music.PNG" width="420" height="180">
 </p>
 
 ### Home
 <p align="center">
-<img align="left" src="readme_image/home/Register.PNG" width="440" height="200"> <img align="right" src="readme_image/home/login.PNG" width="440" height="200">
+<img src="readme_image/home/Register.PNG" width="420" height="180"> <img src="readme_image/home/login.PNG" width="420" height="180">
 </p>
 <p align="center">
-<img align="left" src="readme_image/home/home.PNG" width="440" height="200"> <img align="right" src="readme_image/home/home-add-cart.PNG" width="440" height="200">
+<img src="readme_image/home/home.PNG" width="420" height="180"> <img src="readme_image/home/home-add-cart.PNG" width="420" height="180">
 </p>
 
 ### Products
 <p align="center">
-<img align="left" src="readme_image/home/Products.PNG" width="440" height="200"> <img align="right" src="readme_image/home/products-add.PNG" width="440" height="200">
+<img src="readme_image/home/Products.PNG" width="420" height="180"> <img src="readme_image/home/products-add.PNG" width="420" height="180">
 </p>
 <p align="center">
-<img align="left" src="readme_image/home/products-update.PNG" width="440" height="200">
+<img align="center" src="readme_image/home/products-update.PNG" width="420" height="180">
 </p>
 
 ### Related Project (Backend)
