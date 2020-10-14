@@ -16,7 +16,7 @@
 <script>
 export default {
   name: 'Alert',
-  data() {
+  data () {
     return {
       addProductAlert: false,
       updateProductAlert: false

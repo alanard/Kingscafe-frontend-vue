@@ -18,20 +18,27 @@
             </tr>
           </thead>
           <tbody>
-            <tr class="text-center" v-for="product in products" :key="product.id">
-              <td>{{product.id}}</td>
+            <tr
+              class="text-center"
+              v-for="product in products"
+              :key="product.id"
+            >
+              <td>{{ product.id }}</td>
               <td>
                 <img :src="product.image" alt />
               </td>
-              <td>{{product.name}}</td>
-              <td>{{product.price}}</td>
-              <td>{{product.idCategory}}</td>
-              <td>{{product.nameCategory}}</td>
-              <td>{{product.status}}</td>
+              <td>{{ product.name }}</td>
+              <td>{{ product.price }}</td>
+              <td>{{ product.idCategory }}</td>
+              <td>{{ product.nameCategory }}</td>
+              <td>{{ product.status }}</td>
               <td>
                 <!-- Ini Show Modal edit -->
                 <!-- Emit membutuhkan parameter untuk menampilkan data yang mau di update -->
-                <button class="text-success" @click="$emit('event-update', product)">
+                <button
+                  class="text-success"
+                  @click="$emit('event-update', product)"
+                >
                   <i class="fas fa-edit"></i>
                 </button>
               </td>
@@ -48,7 +55,9 @@
           class="alert alert-danger"
           role="alert"
           v-show="deleteProductAlert"
-        >Data has ben deleted!!</div>
+        >
+          Data has ben deleted!!
+        </div>
       </div>
     </div>
   </div>
@@ -60,21 +69,38 @@ import { mapActions, mapGetters } from 'vuex'
 // import ErrHandling from './errHandling'
 export default {
   name: 'Card',
-  data() {
+  data () {
     return {
       deleteProductAlert: false
     }
   },
   methods: {
     ...mapActions(['getProducts']),
-    deleteProduct(id) {
+    deleteProduct (id) {
       axios
         .delete(`http://localhost:4100/api/v1/products/${id}`)
-        .then((response) => {
-          this.message = alert('Data has ben deleted')
-          this.deleteProductAlert = true
-          // this.items = this.items.filter((val) => val.id !== id)
-          this.getProducts()
+        .then(() => {
+          this.$swal({
+            title: 'Are you sure to delete?',
+            text: "You can't revert your action",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes Delete it!',
+            cancelButtonText: 'No, Keep it!',
+            showCloseButton: true,
+            showLoaderOnConfirm: true
+          }).then((result) => {
+            if (result.value) {
+              this.$swal(
+                'Deleted',
+                'You successfully deleted this product',
+                'success'
+              )
+              this.getProducts()
+            } else {
+              this.$swal('Cancelled', 'Your file is still intact', 'info')
+            }
+          })
         })
         .catch((err) => {
           console.log(err.response)
@@ -84,7 +110,7 @@ export default {
   computed: mapGetters({
     products: 'products'
   }),
-  mounted() {
+  mounted () {
     this.getProducts()
   }
 }

@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div class="image-card" :class="active? 'active' : ''">
+    <div class="image-card" :class="active ? 'active' : ''">
       <img :src="image" alt @click="$emit('select-product')" />
     </div>
     <div class="container">
-      <div class="title-card id">{{id}}</div>
-      <div class="title-card">{{name}}</div>
-      <div class="price-card">Rp. {{price}}</div>
+      <div class="title-card id">{{ id }}</div>
+      <div class="title-card">{{ name }}</div>
+      <div class="price-card">Rp. {{ price }}</div>
     </div>
   </div>
 </template>
@@ -44,7 +44,8 @@ export default {
   font-weight: bold;
   top: 3px;
   font-size: 18px;
-  left: 15px;
+  left: 5px;
+  width: 220px;
 }
 .title-card.id {
   display: none;
@@ -53,7 +54,7 @@ export default {
   /* border: 1px solid black; */
   position: relative;
   top: 5px;
-  left: 15px;
+  left: 5px;
   font-size: 18px;
   font-family: 'Poppins', sans-serif;
   font-weight: bold;
@@ -61,33 +62,32 @@ export default {
 
 .active {
   filter: brightness(50%);
-  background-image: url('https://raw.githubusercontent.com/alanard/web-slicing-kingscafe/master/assets/img/logo-img/logout.png');
+  /* background-image: url('https://raw.githubusercontent.com/alanard/web-slicing-kingscafe/master/assets/img/logo-img/logout.png'); */
   /* background-repeat: no-repeat; */
   background-size: cover;
-
-  width: 200px;
-  height: 160px;
-  /* border: 4px solid black; */
-  /* z-index: 100;
-  position: relative; */
-  /* top: 20px; */
 }
 
 /* Tampilan tablet */
 @media screen and (max-width: 768px) {
   .image-card {
-    margin-bottom: -60px;
+    border: 1px solid black;
+    width: 130px;
+    height: 100px;
+    margin-bottom: 5px;
   }
   .image-card img {
+    border: 1px solid black;
     width: 130px;
     height: 100px;
     border-radius: 10px 10px 0 0;
   }
   .price-card {
-    left: -12px;
+    top: 6px;
+    /* left: -12px; */
     font-size: 18px;
   }
   .title-card {
+    top: 6px;
     font-size: 17px;
   }
 }
@@ -95,28 +95,50 @@ export default {
 /* Tampilan mobile */
 
 @media screen and (max-width: 576px) {
-  div .container {
-    margin-left: 50px;
+  .image-card {
+    /* border: 1px solid black; */
+    width: 180px;
+    height: 140px;
+    border-radius: 10px 10px 0 0;
+    margin-left: 10px;
+    cursor: pointer;
+    margin-bottom: 20px;
   }
   .image-card img {
-    width: 120px;
-    height: 100px;
-    border-radius: 10px 10px 0 0;
-    margin-left: 50px;
+    width: 180px;
+    height: 140px;
   }
   .title-card {
     /* border: 1px solid black; */
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Poppins', sans-serif;
     position: relative;
-    /* top: 180px; */
-    font-size: 15px;
+    font-weight: bold;
+    font-size: 18px;
+    top: -10px;
+    left: 5px;
+    width: 180px;
+  }
+  .title-card.id {
+    display: none;
   }
   .price-card {
     /* border: 1px solid black; */
     position: relative;
-    font-size: 15px;
+    top: -8px;
+    left: 5px;
+    font-size: 18px;
     font-family: 'Poppins', sans-serif;
     font-weight: bold;
+    width: 180px;
+  }
+
+  .active {
+    filter: brightness(50%);
+    /* background-repeat: no-repeat; */
+    background-size: cover;
+
+    width: 200px;
+    height: 160px;
   }
 }
 </style>

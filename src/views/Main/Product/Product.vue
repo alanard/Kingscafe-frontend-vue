@@ -13,22 +13,6 @@
               <i class="fas fa-plus-circle"></i>&nbsp;&nbsp;Add New Product
             </button>
           </div>
-          <!-- Alert Product -->
-          <div
-            class="alert alert-primary"
-            role="alert"
-            v-show="addProductAlert"
-          >Yeeee! Data success added!</div>
-          <div
-            class="alert alert-success"
-            role="alert"
-            v-show="updateProductAlert"
-          >Yeeee! Data success Updated!</div>
-          <div
-            class="alert alert-danger"
-            role="alert"
-            v-show="deleteProductAlert"
-          >Yeeee! Data has ben Deleted!</div>
         </div>
         <hr class="bg-info" />
 
@@ -71,24 +55,21 @@ export default {
       price: '',
       idCategory: '',
       status: '',
-      image: null,
-      addProductAlert: false,
-      updateProductAlert: false,
-      deleteProductAlert: false
+      image: null
     }
   }),
   methods: {
     ...mapActions(['getProducts', 'postProducts', 'patchProduct']),
-    toggleModal() {
+    toggleModal () {
       this.modalActive = !this.modalActive
       if (!this.modalActive) {
         this.clearModal()
       }
     },
-    handleEventModal() {
+    handleEventModal () {
       this.dataModal.id ? this.updateProduct() : this.addProduct()
     },
-    updateProduct() {
+    updateProduct () {
       const data = new FormData()
       data.append('name', this.dataModal.name)
       data.append('image', this.dataModal.image)
@@ -97,19 +78,19 @@ export default {
       data.append('status', this.dataModal.status)
       const container = { id: this.dataModal.id, data: data }
       this.patchProduct(container)
-        .then((res) => {
+        .then(() => {
           this.clearModal()
           this.getProducts()
           console.log('update')
           this.modalActive = false
-          this.addProductAlert = false
-          this.updateProductAlert = true
+          // Alert
+          this.$swal('Success', 'Data Successfuly updated', 'OK')
         })
         .catch((err) => {
           console.log(err)
         })
     },
-    setUpdate(data) {
+    setUpdate (data) {
       this.modalActive = true
       this.dataModal.id = data.id
       this.dataModal.name = data.name
@@ -118,7 +99,7 @@ export default {
       this.dataModal.status = data.status
       this.dataModal.image = data.image
     },
-    clearModal() {
+    clearModal () {
       this.dataModal.id = null
       this.dataModal.name = ''
       this.dataModal.price = ''
@@ -126,7 +107,7 @@ export default {
       this.dataModal.status = ''
       this.dataModal.image = null
     },
-    addProduct() {
+    addProduct () {
       const data = new FormData()
       data.append('name', this.dataModal.name)
       data.append('image', this.dataModal.image)
@@ -134,11 +115,11 @@ export default {
       data.append('idCategory', this.dataModal.idCategory)
       data.append('status', this.dataModal.status)
       this.postProducts(data)
-        .then((res) => {
+        .then(() => {
           this.clearModal()
           this.modalActive = false
-          this.updateProductAlert = false
-          this.addProductAlert = true
+          // Alert
+          this.$swal('Success', 'Data Successfuly added', 'OK')
           this.getProducts()
         })
         .catch((err) => {
@@ -151,7 +132,7 @@ export default {
       products: 'products'
     })
   },
-  mounted() {
+  mounted () {
     this.getProducts()
   }
 }

@@ -9,20 +9,39 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: 'Aside-left',
   methods: {
-    linkHistory() {
+    ...mapActions(['logout']),
+    linkLogout () {
+      this.$swal({
+        title: 'Are you sure?',
+        text: "You can't revert your action",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Are you sure to Logout?',
+        cancelButtonText: 'No, Keep it!',
+        showCloseButton: true,
+        showLoaderOnConfirm: true
+      }).then((res) => {
+        if (res.value) {
+          this.$swal('Logout!', 'You successfully logout', 'success')
+          this.logout()
+          // this.$router.push({ path: '/' })
+        } else {
+          this.$swal('Cancelled', 'I hope you enjoy', 'info')
+        }
+      })
+    },
+    linkHistory () {
       this.$router.push('history')
     },
-    linkHome() {
+    linkHome () {
       this.$router.push('home')
     },
-    linkProduct() {
+    linkProduct () {
       this.$router.push('product')
-    },
-    linkLogout() {
-      this.$router.push('/')
     }
   }
 }
@@ -136,39 +155,54 @@ export default {
 
 /* Setingan untuk hp */
 @media screen and (max-width: 576px) {
+  .aside-left {
+    /* border: 1px solid black; */
+    flex: 0.6;
+    box-sizing: border-box;
+    /* display: flex; */
+    /* flex-wrap: nowrap; */
+    background: #ffffff;
+    box-shadow: 10px 6px 10px rgba(0, 0, 0, 0.25);
+  }
   .aside-left .fork-image {
     /* border: 1px solid black; */
-    background-size: cover;
-    position: relative;
-    width: 25px;
-    height: 25px;
-    top: 18px;
-    left: 12px;
+    width: 30px;
+    height: 30px;
+    top: 20px;
+    left: 14px;
+    cursor: pointer;
   }
 
   .aside-left .clipboard-image {
-    background-size: cover;
-    width: 25px;
-    height: 25px;
-    top: 60px;
-    left: 12px;
+    width: 30px;
+    height: 30px;
+    top: 50px;
+    left: 14px;
+    cursor: pointer;
   }
 
   .aside-left .add-image {
-    background-size: cover;
-    position: relative;
-    width: 25px;
-    height: 25px;
-    top: 100px;
-    left: 12px;
+    width: 30px;
+    height: 30px;
+    top: 80px;
+    left: 14px;
+    cursor: pointer;
   }
+
   .aside-left .history-image {
-    background-size: cover;
-    position: relative;
-    width: 25px;
-    height: 25px;
-    top: 130px;
-    left: 15px;
+    width: 32px;
+    height: 32px;
+    top: 110px;
+    left: 17px;
+    cursor: pointer;
+  }
+
+  .aside-left .logout-image {
+    width: 32px;
+    height: 40px;
+    top: 140px;
+    left: 14px;
+    cursor: pointer;
   }
 }
 </style>

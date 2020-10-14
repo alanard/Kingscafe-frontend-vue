@@ -3,77 +3,146 @@
     <div class="brand">
       <span class="title">King'S Cafe</span>
       <span class="description">
-        Lorem ipsum dolor sit amet consectetur,
-        adipisicing elit. Officia molestias repellendus
-        nesciunt voluptate, assumenda vitae similique doloribus animi cum error.
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia
+        molestias repellendus nesciunt voluptate, assumenda vitae similique
+        doloribus animi cum error.
       </span>
     </div>
     <!-- Form Register -->
-    <div class="overlay">
+    <div class="overlay" @submit.prevent="submit">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-body p-4">
-            <form class="was-validated">
+            <form>
+              <!-- Firstname -->
               <div class="form-group">
                 <input
                   type="text"
-                  name="firstName"
-                  class="form-control form-control-lg"
+                  v-model.trim="$v.firstName.$model"
                   placeholder="First Name"
-                  required
-                  v-model="firstName"
+                  class="form-control form-control-lg"
+                  :class="{
+                    'is-invalid': $v.firstName.$error,
+                    'is-valid': !$v.firstName.$invalid
+                  }"
                 />
-                <div class="valid-feedback">Look Good</div>
-                <div class="invalid-feedback">e.g. Ansell</div>
+                <div class="valid-feedback">Your First Name Valid!</div>
+                <div class="invalid-feedback">
+                  <span v-if="!$v.firstName.required"
+                    >First Name is required</span
+                  >
+                  <span v-if="!$v.firstName.minLength"
+                    >First Name must have at least
+                    {{ $v.firstName.$params.minLength.min }} letters</span
+                  >
+                  <span v-if="!$v.firstName.maxLength"
+                    >First Name must have at most
+                    {{ $v.firstName.$params.maxLength.max }} letters</span
+                  >
+                </div>
               </div>
+              <!-- Lastname -->
               <div class="form-group">
                 <input
                   type="text"
-                  name="lastName"
-                  class="form-control form-control-lg"
+                  v-model.trim="$v.lastName.$model"
                   placeholder="Last Name"
-                  v-model="lastName"
-                  required
+                  class="form-control form-control-lg"
+                  :class="{
+                    'is-invalid': $v.lastName.$error,
+                    'is-valid': !$v.lastName.$invalid
+                  }"
                 />
-                <div class="valid-feedback">Look Good</div>
-                <div class="invalid-feedback">e.g. Jenkins</div>
+                <div class="valid-feedback">Your Last Name Valid!</div>
+                <div class="invalid-feedback">
+                  <span v-if="!$v.lastName.required"
+                    >Last Name is required</span
+                  >
+                  <span v-if="!$v.lastName.minLength"
+                    >Last Name must have at least
+                    {{ $v.lastName.$params.minLength.min }} letters</span
+                  >
+                  <span v-if="!$v.lastName.maxLength"
+                    >Last Name must have at most
+                    {{ $v.lastName.$params.maxLength }} letters</span
+                  >
+                </div>
               </div>
+              <!-- Email -->
               <div class="form-group">
                 <input
                   type="text"
-                  name="email"
+                  v-model.trim="$v.email.$model"
                   class="form-control form-control-lg"
-                  placeholder="Email"
-                  v-model="email"
-                  required
+                  placeholder="Your email"
+                  :class="{
+                    'is-invalid': $v.email.$error,
+                    'is-valid': !$v.email.$invalid
+                  }"
                 />
-                <div class="valid-feedback">Look Good</div>
-                <div class="invalid-feedback">e.g. jenkins24@gmail.com</div>
+                <div class="valid-feedback">Your Email Valid!</div>
+                <div class="invalid-feedback">
+                  <span v-if="!$v.email.required">Email is required</span>
+                  <span v-if="!$v.email.minLength"
+                    >Email must have at least
+                    {{ $v.email.$params.minLength.min }} letters</span
+                  >
+                </div>
               </div>
-
+              <!-- Password -->
               <div class="form-group">
                 <input
                   type="password"
-                  name="password"
+                  v-model.trim="$v.password.$model"
                   class="form-control form-control-lg"
-                  placeholder="Password"
-                  v-model="password"
-                  required
+                  placeholder="password"
+                  :class="{
+                    'is-invalid': $v.password.$error,
+                    'is-valid': !$v.password.$invalid
+                  }"
                 />
-                <div class="valid-feedback">Look Good</div>
-                <div class="invalid-feedback">Password Must Be Min 6 Char</div>
+                <div class="valid-feedback">Your Password Valid!</div>
+                <div class="invalid-feedback">
+                  <span v-if="!$v.password.required">Password is required</span>
+                  <span v-if="!$v.password.minLength"
+                    >{{ $v.password.$params.minLength.min }} Characters
+                    minimum</span
+                  >
+                  <span v-if="!$v.password.maxLength"
+                    >Password must have at most
+                    {{ $v.password.$params.maxLength }} letters</span
+                  >
+                </div>
               </div>
-
               <div class="form-group">
                 <div class="login">
                   Do you have an account?
                   <span @click="linkLogin">Login</span>
                 </div>
-                <div
-                  type="submit"
-                  class="btn btn-info btn-block btn-lg"
-                  @click="handleRegister"
-                >Register</div>
+                <!-- Button Register -->
+                <div class="form-group">
+                  <button
+                    class="btn btn-info btn-block btn-lg"
+                    type="submit"
+                    :disabled="
+                      !$v.firstName.minLength ||
+                      !$v.lastName.minLength ||
+                      !$v.email.minLength ||
+                      !$v.password.minLength
+                    "
+                  >
+                    Register
+                  </button>
+                  <p class="typo__p" v-if="submitStatus === 'OK'">
+                    Thanks for your submission!
+                  </p>
+                  <p class="typo__p" v-if="submitStatus === 'ERROR'">
+                    Please fill the form correctly.
+                  </p>
+                  <p class="typo__p" v-if="submitStatus === 'PENDING'">
+                    Sending...
+                  </p>
+                </div>
               </div>
             </form>
           </div>
@@ -86,14 +155,38 @@
 
 <script>
 import { mapActions } from 'vuex'
+import { required, minLength, maxLength } from 'vuelidate/lib/validators'
 export default {
-  name: 'register',
-  data() {
+  name: 'Register',
+  data () {
     return {
       firstName: '',
       lastName: '',
       email: '',
-      password: ''
+      password: '',
+      alertRegister: false,
+      submitStatus: ''
+    }
+  },
+  validations: {
+    firstName: {
+      required,
+      minLength: minLength(3),
+      maxLength: maxLength(15)
+    },
+    lastName: {
+      required,
+      minLength: minLength(3),
+      maxLength: maxLength(24)
+    },
+    email: {
+      required,
+      minLength: minLength(5)
+    },
+    password: {
+      required,
+      minLength: minLength(6),
+      maxLength: maxLength(20)
     }
   },
   errhandling: {
@@ -101,11 +194,21 @@ export default {
   },
   methods: {
     ...mapActions(['register']),
-    linkLogin() {
+    linkLogin () {
       this.$router.push({ path: '/login' })
     },
-    handleRegister(e) {
-      e.preventDefault()
+    submit () {
+      console.log('submit!')
+      this.$v.$touch()
+      if (this.$v.$invalid) {
+        this.submitStatus = 'ERROR'
+      } else {
+        // do your submit logic here
+        this.submitStatus = 'PENDING'
+        setTimeout(() => {
+          this.submitStatus = 'OK'
+        }, 500)
+      }
       const data = {
         firstName: this.firstName,
         lastName: this.lastName,
@@ -114,15 +217,29 @@ export default {
       }
       this.register(data)
         .then((res) => {
-          console.log('user berhasil ditambahkan')
+          this.$swal({
+            title: 'Successfully registered :))',
+            text: 'Please Login',
+            icon: 'success'
+          })
           this.$router.push('login')
           console.log(res)
         })
         .catch((err) => {
           if (err.response.status === 403) {
-            alert('Email Already Redistered, Please Login!')
-          } else if (err.response.result === '') {
-            alert('Data Harus diisi')
+            this.$swal({
+              title: 'Login Please!',
+              text: 'You email has already registered!!!',
+              type: 'warning',
+              confirmButtonText: 'Login',
+              showCloseButton: true
+            }).then((result) => {
+              if (result.value) {
+                this.$router.push({ name: 'Login' })
+              } else {
+                this.$router.push({ name: 'Register' })
+              }
+            })
           }
         })
     }
@@ -131,6 +248,13 @@ export default {
 </script>
 
 <style scoped>
+.alert.alert-danger {
+  width: 400px;
+  /* margin: 10px 20px 0px 20px; */
+  font-size: 18px;
+  font-weight: 500;
+}
+
 .brand {
   /* border: 1px solid black; */
   display: inline-block;

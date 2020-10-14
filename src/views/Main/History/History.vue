@@ -15,7 +15,10 @@
                   <span class="circle2"></span>
                   <span class="circle3"></span>
                   <span class="info1">Today's Income</span>
-                  <span class="info2">Rp. 1.000.000</span>
+                  <span class="info2" v-for="(histories, index) in isSetHistory[1]" :key="index">
+                    <span v-if="histories.length < 1">Tidak ada pemasukan</span>
+                    <span>{{histories.amount}}</span>
+                    </span>
                   <span class="info3">+2% Yesterday</span>
                 </div>
                 <div class="order">
@@ -23,7 +26,10 @@
                   <span class="circle2"></span>
                   <span class="circle3"></span>
                   <span class="info1">Order</span>
-                  <span class="info2">3.270</span>
+                  <span class="info2" v-for="(histories, index) in isSetHistory[2]" :key="index">
+                    <span v-if="histories.length < 1">Tidak ada pemasukan</span>
+                    <span>{{histories.amount}}</span>
+                  </span>
                   <span class="info3">+5% Last Week</span>
                 </div>
                 <div class="year-income">
@@ -31,7 +37,10 @@
                   <span class="circle2"></span>
                   <span class="circle3"></span>
                   <span class="info1">year's Income</span>
-                  <span class="info2">Rp. 100.000.000.000</span>
+                  <span class="info2" v-for="(histories, index) in isSetHistory[3]" :key="index">
+                    <span v-if="histories.length < 1">Tidak ada pemasukan</span>
+                    <span>{{histories.amount}}</span>
+                  </span>
                   <span class="info3">+10% Last Year</span>
                 </div>
               </div>
@@ -50,8 +59,13 @@
                       data-toggle="dropdown"
                       aria-haspopup="true"
                       aria-expanded="false"
-                    >Month Income</button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    >
+                      Month Income
+                    </button>
+                    <div
+                      class="dropdown-menu"
+                      aria-labelledby="dropdownMenuButton"
+                    >
                       <a class="dropdown-item" href="#">This Month</a>
                       <a class="dropdown-item" href="#">Last Month</a>
                     </div>
@@ -89,11 +103,16 @@
                       data-toggle="dropdown"
                       aria-haspopup="true"
                       aria-expanded="false"
-                    >Day Income</button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    >
+                      Day Income
+                    </button>
+                    <div
+                      class="dropdown-menu"
+                      aria-labelledby="dropdownMenuButton"
+                    >
                       <a class="dropdown-item">Today</a>
-                      <a class="dropdown-item">Yesterday</a>
                       <a class="dropdown-item">This Week</a>
+                      <a class="dropdown-item">This Month</a>
                     </div>
                   </div>
                 </div>
@@ -108,13 +127,13 @@
                     <th scope="col">AMOUNT</th>
                   </tr>
                   <tbody>
-                    <tr v-for="histories in isSetHistory" :key="histories.id">
-                      <th scope="row">{{histories.id}}</th>
-                      <td>{{histories.invoice}}</td>
-                      <td>{{histories.cashier}}</td>
-                      <td>{{histories.date}}</td>
-                      <td>{{histories.orders}}</td>
-                      <td>Rp. {{histories.amount}}</td>
+                    <tr v-for="histories in isSetHistory[0]" :key="histories.id">
+                      <th scope="row">{{ histories.id }}</th>
+                      <td>{{ histories.invoice }}</td>
+                      <td>{{ histories.cashier }}</td>
+                      <td>{{ histories.date }}</td>
+                      <td>{{ histories.orders }}</td>
+                      <td>Rp. {{ histories.amount }}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -134,10 +153,12 @@
 import Navbar from './components/navbar'
 import AsideLeft from '../../../components/_base/Aside-left'
 import { mapActions, mapGetters } from 'vuex'
+
 export default {
   name: 'History',
-  data() {
-    return {}
+  data () {
+    return {
+    }
   },
   components: {
     Navbar,
@@ -149,7 +170,7 @@ export default {
   computed: mapGetters({
     isSetHistory: 'isSetHistory'
   }),
-  mounted() {
+  mounted () {
     this.getHistory()
   }
 }
@@ -165,6 +186,12 @@ body {
 .main-content {
   display: flex;
   flex-direction: row;
+
+  overflow: scroll;
+}
+
+.main-content::-webkit-scrollbar {
+  display: none;
 }
 
 .aside-left {
@@ -175,7 +202,7 @@ body {
 main {
   /* border: 1px solid black; */
   width: 100%;
-  height: 1000px;
+  height: inherit;
   box-sizing: border-box;
   display: flex;
   flex: 1;
@@ -421,6 +448,7 @@ main {
   width: 100%;
   flex: 1;
   height: 300px;
+  overflow: scroll;
 }
 
 .graphic-curva .num {
@@ -512,7 +540,7 @@ main {
 .date-history {
   /* border: 1px solid black; */
   width: 1130px;
-  height: 240px;
+  height: 400px;
   margin-top: 40px;
   display: flex;
   flex-direction: column;
@@ -520,6 +548,12 @@ main {
   border-radius: 10px;
   background: #ffffff;
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25);
+
+  overflow: scroll;
+}
+
+.date-history::-webkit-scrollbar {
+  display: none;
 }
 
 .title-history {
@@ -549,7 +583,10 @@ main {
 
 /* Style Tabel looping */
 .table {
+  /* border: 1px solid black; */
   text-align: center;
+  width: 96%;
+  margin: 10px auto;
 }
 /* End of Date History */
 </style>

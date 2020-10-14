@@ -4,8 +4,9 @@
       <div class="img-brand"></div>
       <span class="title">King'S Cafe</span>
       <span class="description">
-        a contemporary cafe that provides many menu variants, ranging from food, drinks, desserts, cakes, etc.
-        And we provide and invite every street musician to contribute and provide entertainment every weekend
+        a contemporary cafe that provides many menu variants, ranging from food,
+        drinks, desserts, cakes, etc. And we provide and invite every street
+        musician to contribute and provide entertainment every weekend
       </span>
     </div>
     <!-- Form Login -->
@@ -37,14 +38,27 @@
                   type="submit"
                   class="btn btn-info btn-block btn-lg"
                   @click="handleLogin"
-                >Login</button>
+                >
+                  Login
+                </button>
               </div>
             </form>
           </div>
           <div class="line"></div>
+          <!-- Alert Register -->
+          <!-- <div class="alert alert-danger" role="alert" v-show="alertRegister">
+            email already registered, Please login!
+            <span @click="linkLogin">Login</span>
+          </div> -->
           <div class="register-text">Do not have an account?</div>
           <div class="form-group">
-            <div type="submit" class="btn reg btn-info btn-lg" @click="linkRegister">Register</div>
+            <div
+              type="submit"
+              class="btn reg btn-info btn-lg"
+              @click="linkRegister"
+            >
+              Register
+            </div>
           </div>
         </div>
       </div>
@@ -57,27 +71,49 @@
 import { mapActions } from 'vuex'
 
 export default {
-  name: 'login',
-  data() {
+  name: 'Login',
+  data () {
     return {
       email: '',
-      password: ''
+      password: '',
+      alertRegister: false
     }
   },
   methods: {
     ...mapActions(['login', 'getProducts']),
-    handleLogin(e) {
+    handleLogin (e) {
       e.preventDefault()
       const data = {
         email: this.email,
         password: this.password
       }
-      this.login(data).then((res) => {
-        this.getProducts()
-        this.$router.push({ path: '/home' })
-      })
+      this.login(data)
+        .then((res) => {
+          this.getProducts()
+          this.$router.push({ path: '/home' })
+        })
+        .catch((err) => {
+          if (err.response.status === 403 || err.response.status === 401) {
+            this.$swal({
+              title: 'Email Or Password Wrong',
+              text: "If you don't have an account, please Register first",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonText: 'Register',
+              cancelButtonText: 'No, Keep Login',
+              showCloseButton: true,
+              showLoaderOnConfirm: true
+            }).then((result) => {
+              if (result.value) {
+                this.$router.push({ name: 'Register' })
+              } else {
+                this.$router.push({ name: 'Login' })
+              }
+            })
+          }
+        })
     },
-    linkRegister() {
+    linkRegister () {
       this.$router.push({ path: '/register' })
     }
   }

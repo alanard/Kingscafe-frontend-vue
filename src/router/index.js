@@ -20,19 +20,19 @@ const routes = [ //
   },
   {
     path: '/home',
-    name: 'home',
+    name: 'Home',
     component: Home,
     meta: { requiresAuth: true }
   },
   {
     path: '/login',
-    name: 'login',
+    name: 'Login',
     component: Login,
     meta: { requiresVisitor: true }
   },
   {
     path: '/register',
-    name: 'register',
+    name: 'Register',
     component: Register,
     meta: { requiresVisitor: true }
   },

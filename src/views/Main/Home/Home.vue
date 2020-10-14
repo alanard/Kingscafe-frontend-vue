@@ -17,13 +17,20 @@
               data-toggle="dropdown"
               aria-haspopup="true"
               aria-expanded="false"
-            >Order By</a>
+              >Order By</a
+            >
 
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" v-custom="dropdown">
+            <div
+              class="dropdown-menu"
+              aria-labelledby="dropdownMenuLink"
+              v-custom="dropdown"
+            >
               <a class="dropdown-item" @click="OrderName">A - Z</a>
               <a class="dropdown-item" @click="OrderNameDesc">Z - A</a>
               <a class="dropdown-item" @click="OrderPriceMin">cheapest price</a>
-              <a class="dropdown-item" @click="OrderPricePlus">expensive price</a>
+              <a class="dropdown-item" @click="OrderPricePlus"
+                >expensive price</a
+              >
             </div>
           </div>
         </div>
@@ -36,28 +43,6 @@
             :active="checkProductActive(product.id)"
             @select-product="setAddToCart(product)"
           />
-        </div>
-        <!-- Pagination -->
-        <div>
-          <nav aria-label="...">
-            <ul class="pagination">
-              <li class="page-item disabled">
-                <a class="page-link" tabindex="-1" aria-disabled="true">Previous</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link">1</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link">2</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link">3</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link">Next</a>
-              </li>
-            </ul>
-          </nav>
         </div>
       </div>
       <AsideRight :dataCart="dataCart" :activ="activ" />
@@ -75,14 +60,14 @@ import Card from '../../../components/_base/Card'
 import { mapActions, mapGetters, mapMutations } from 'vuex'
 
 export default {
-  name: 'home',
+  name: 'Home',
   components: {
     AsideLeft,
     AsideRight,
     Card,
     Navbar
   },
-  data() {
+  data () {
     return {
       // products: [],
       dropdown: 'ThisIsDropdown',
@@ -95,7 +80,7 @@ export default {
     }
   },
   methods: {
-    checkProductActive(id) {
+    checkProductActive (id) {
       return this.getCart.find((item) => {
         return item.id === id
       })
@@ -110,7 +95,7 @@ export default {
     ]),
     // Langsung saja diextraks karena tidak akan diolah lai jdi tidak perlu buat function lagi
     ...mapMutations(['setAddToCart']),
-    OrderName(e) {
+    OrderName (e) {
       e.preventDefault()
       this.getProductsByName()
         .then((res) => {
@@ -121,7 +106,7 @@ export default {
           console.log(err)
         })
     },
-    OrderNameDesc(e) {
+    OrderNameDesc (e) {
       e.preventDefault()
       this.getProductsByNameDesc()
         .then((res) => {
@@ -132,7 +117,7 @@ export default {
           console.log(err)
         })
     },
-    OrderPriceMin(e) {
+    OrderPriceMin (e) {
       e.preventDefault()
       this.getProductsByPriceMin()
         .then((res) => {
@@ -143,7 +128,7 @@ export default {
           console.log(err)
         })
     },
-    OrderPricePlus(e) {
+    OrderPricePlus (e) {
       e.preventDefault()
       this.getProductsByPricePlus()
         .then((res) => {
@@ -161,7 +146,7 @@ export default {
       getCart: 'getCart'
     })
   },
-  mounted() {
+  mounted () {
     this.getProducts()
   }
 }
@@ -186,18 +171,18 @@ export default {
   flex: 3.3;
   overflow-x: hidden;
 }
+
+.main-content::-webkit-scrollbar {
+  display: none;
+}
+
 .main-content .card {
   border: 1px solid black;
-  /* width: 200px; */
-  /* height: 180px; */
-  /* margin: 10px; */
   border: none;
   border-radius: 10px 10px 0 0;
   margin: 20px 30px 10px 30px;
   background: none;
   display: inline-block;
-  /* overflow: hidden; */
-  /* box-sizing: border-box; */
 }
 
 .filter {
@@ -210,28 +195,52 @@ export default {
 @media screen and (max-width: 768px) {
   .main-content .card {
     border: 1px solid black;
-    /* width: 200px; */
     border: none;
     border-radius: 10px 10px 0 0;
-    margin: 20px 20px 10px 38px;
+    margin-left: 10px;
+    margin-right: 10px;
     background: none;
     display: inline-block;
+  }
+  .main-content {
+    border: 1px solid black;
+  }
+  .filter {
+    position: relative;
+    left: 22px;
+    margin-top: 15px;
   }
 }
 
 /* Tampilan Mobile */
 @media screen and (max-width: 576px) {
+  .main-content {
+    /* border: 1px solid black; */
+    background: rgba(190, 195, 202, 0.3);
+    flex: 3.3;
+    overflow-x: hidden;
+  }
   .main-content .card {
     /* border: 1px solid black; */
-    /* width: 200px; */
     border: none;
     border-radius: 10px 10px 0 0;
-    /* margin: 20px 20px 10px 38px; */
+    margin: 20px 30px 10px 60px;
     background: none;
     display: inline-block;
   }
+
   .filter {
+    /* border: 1px solid black; */
+    position: relative;
     left: 0;
+    margin-top: 0;
+    width: 305px;
+    height: 40px;
+  }
+  .dropdown .btn {
+    /* border: 1px solid black; */
+    width: 305px;
+    height: 40px;
   }
 }
 </style>

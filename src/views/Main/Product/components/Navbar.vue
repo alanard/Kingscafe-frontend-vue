@@ -13,7 +13,7 @@ export default {
   name: 'Navabar',
   methods: {
     ...mapActions(['handleSearch']),
-    search(e) {
+    search (e) {
       this.handleSearch(e.target.value)
     }
   }

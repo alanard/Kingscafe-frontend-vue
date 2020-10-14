@@ -10,7 +10,7 @@
           <a class="nav-link" @click="linkHome">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Menu</a>
+          <a class="nav-link" @click="linkHome">Menu</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">About Us</a>
@@ -24,7 +24,9 @@
       <!-- Brand -->
       <div class="wellcome">Wellcome to</div>
       <div class="brand-title">King'S Cafe</div>
-      <div class="brand-title-item">the number one selling cafe in the world</div>
+      <div class="brand-title-item">
+        the number one selling cafe in the world
+      </div>
       <!-- End Brand -->
       <!-- <button class="btn-brand">Find A Table</button> -->
     </div>
@@ -35,11 +37,22 @@
 export default {
   name: 'nav',
   methods: {
-    linkLogin() {
-      this.$router.push('login')
+    linkLogin () {
+      this.$router.push({ name: 'Login' })
     },
-    linkHome() {
-      this.$router.push('home')
+    linkHome () {
+      this.$swal({
+        title: 'Please Login first!!',
+        text: "you don't have access to log in!",
+        icon: 'info',
+        showCloseButton: true
+      }).then((result) => {
+        if (result.value) {
+          this.$router.push({ name: 'Login' })
+        } else {
+          this.$router.push({ path: '/' })
+        }
+      })
     }
   }
 }

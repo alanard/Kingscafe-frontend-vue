@@ -19,7 +19,7 @@ export default {
   methods: {
     ...mapActions(['interceptorsRequest', 'interceptorsResponse'])
   },
-  created() {
+  created () {
     this.interceptorsRequest()
     this.interceptorsResponse()
   }

@@ -19,7 +19,7 @@ export default {
   name: 'Navbar',
   methods: {
     ...mapActions(['handleSearch']),
-    setSearch(e) {
+    setSearch (e) {
       this.handleSearch(e.target.value)
     }
   },
@@ -153,6 +153,41 @@ export default {
   .header .nav.search .img-src {
     top: 20px;
     left: 70px;
+  }
+  /* Start Nav Cart */
+  .nav.cart {
+    display: flex;
+    z-index: 1;
+    /* width: 200px; */
+    box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.25);
+    border: 1px solid #e7e2e2;
+  }
+
+  .nav.cart span {
+    margin: auto;
+    font-size: 22px;
+    font-family: 'airbnb', sans-serif;
+    font-weight: bolder;
+
+    position: relative;
+  }
+
+  .header .nav.cart .count {
+    /* Hanya untuk membantu melihat garis awal */
+    /* border: 1px solid black; */
+    background: #57cad5;
+    border-radius: 100%;
+    position: relative;
+    top: 24px;
+    left: -110px;
+
+    width: 27px;
+    height: 28px;
+
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
   }
 }
 

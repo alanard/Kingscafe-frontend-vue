@@ -13,6 +13,7 @@
           <div class="modal-body p-4">
             <form>
               <div class="form-group">
+                <!-- eslint-disable -->
                 <input
                   type="text"
                   name="name"
@@ -87,7 +88,8 @@ export default {
     }
   },
   methods: {
-    handleFile(e) {
+    handleFile (e) {
+      /* eslint-disable */
       this.data.image = e.target.files[0]
     }
   }
