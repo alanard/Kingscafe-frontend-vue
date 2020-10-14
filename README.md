@@ -10,9 +10,7 @@
 - Usage
 - Create Environment Variable
 - Screenshots
-- Release APK
 - Related Project
-- Contributors
 
 ### Introduction
 <b>King's Cafe</b> Website is a simple online commerce website that can be engaged in the food sector where the target is buyers who want to see what products or foods are available and what we sell. You can also order food online
@@ -49,34 +47,14 @@ $ nano .env
 VUE_APP_BASE_URL=YOUR_HOST_URL
 `
 ## Screenshots
-### Landing Page
 <p align="center">
-<img align="center" src="readme_image/landingpage_navbar.PNG" width="470" height="230"> <img align="center" src="readme_image/landingpage_about_us.PNG" width="470" height="230">
-</p>
-<p align="center">
-<img align="center" src="readme_image/Landingpage_map_location.PNG" width="470" height="230"> <img align="center" src="readme_image/landingpage_ekstra_ordinary_menus.PNG" width="470" height="230">
-</p>
-<p align="center">
-<img align="center" src="readme_image/landingpage_most_popular.PNG" width="470" height="230"> <img align="center" src="readme_image/landingpage_cafe_location.PNG" width="470" height="230">
-</p>
-<p align="center">
-<img align="center" src="readme_image/landingpage_music.PNG" width="470" height="230">
-</p>
-
-### Home
-<p align="center">
-<img align="center" src="readme_image/home/Register.PNG" width="470" height="230"> <img align="center" src="readme_image/home/login.PNG" width="470" height="230">
-</p>
-<p align="center">
-<img align="center" src="readme_image/home/home.PNG" width="470" height="230"> <img align="center" src="readme_image/home/home-add-cart.PNG" width="470" height="230">
-</p>
-
-### Products
-<p align="center">
-<img align="center" src="readme_image/home/Products.PNG" width="470" height="230"> <img align="center" src="readme_image/home/products-add.PNG" width="470" height="230">
-</p>
-<p align="center">
-<img align="center" src="readme_image/home/products-update.PNG" width="470" height="230">
+<img src="readme_image/landingpage_navbar.PNG" width="250" height="120"> <img src="readme_image/landingpage_about_us.PNG" width="250" height="120">
+<img src="readme_image/Landingpage_map_location.PNG" width="250" height="120"> <img src="readme_image/landingpage_ekstra_ordinary_menus.PNG" width="250" height="120">
+<img src="readme_image/landingpage_most_popular.PNG" width="250" height="120"> <img src="readme_image/landingpage_cafe_location.PNG" width="250" height="120">
+<img src="readme_image/landingpage_music.PNG" width="250" height="120"> <img src="readme_image/home/Register.PNG" width="250" height="120"> 
+<img src="readme_image/home/login.PNG" width="250" height="140"> <img src="readme_image/home/home.PNG" width="250" height="120"> 
+<img src="readme_image/home/home-add-cart.PNG" width="250" height="120"> <img src="readme_image/home/Products.PNG" width="250" height="120"> 
+<img src="readme_image/home/products-add.PNG" width="250" height="120"> <img src="readme_image/home/products-update.PNG" width="250" height="120">
 </p>
 
 ### Related Project (Backend)
