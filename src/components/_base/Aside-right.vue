@@ -59,7 +59,7 @@
     <div class="modal-show" v-if="isShow">
       <div class="modal-title">
         <div class="title-cashier">
-          <p class="checkout">Checkout</p>
+          <p class="checkout" refs='content'>Checkout</p>
           <p class="cashier">Cashier: Pevita Pearce</p>
         </div>
         <div class="title-struk">
@@ -67,7 +67,7 @@
           <span><i class="fas fa-times" @click="closeAlert"></i></span>
         </div>
       </div>
-      <div class="modal-content">
+      <div class="modal-content" >
         <div class="content-item" v-for="(item, index) in getCart" :key="index">
           <div class="product-name">{{ item.name }}</div>
           <div class="product-price">Rp. {{ item.price }}</div>
@@ -80,10 +80,11 @@
       <div class="total-price">Total : Rp. {{ totalprice() }}</div>
       <div class="method">Payment: Cash</div>
       <div class="modal-checkout-button">
-        <button class="btn btn-primary print">Print</button>
+        <button class="btn btn-primary print" @click="printPdf">Print PDF</button>
         <div class="or">Or</div>
         <button class="btn btn-primary send-email" @click="postToHistory()">
-          Send Email
+            <span v-if="isLoading == false">Checkout</span>
+            <Circle8 class="loading-mid" v-if="isLoading"></Circle8>
         </button>
       </div>
     </div>
@@ -92,9 +93,12 @@
 
 <script>
 import axios from 'axios'
+import { jsPDF } from 'jspdf'
 import { mapGetters, mapMutations } from 'vuex'
+import mixins from '../mixins/Loading'
 export default {
   name: 'Aside-right',
+  mixins: [mixins],
   data () {
     return {
       isShow: false
@@ -104,6 +108,17 @@ export default {
     ...mapMutations(['setAddToCart', 'setClearAllCart', 'setMinPlus']),
     showModalCheckout () {
       this.isShow = !this.isShow
+    },
+    printPdf () {
+      /* enable eslint */
+      const doc = jsPDF()
+      const html = this.$refs.content.innerHTML
+      // doc.text('Terima Kasih sudah berbelanja di king\'s cafe, semoga anda senang :))', 15, 15)
+      // doc.text(this.getCart.name, 15, 15)
+      doc.fromHTML(html, 15, 15, {
+        width: 150
+      })
+      doc.save('king\'s cafe struk.pdf')
     },
     empetyCart () {
       this.$swal({
@@ -127,6 +142,7 @@ export default {
       })
     },
     closeAlert () {
+      this.isLoading = false
       this.$swal({
         title: 'Are you sure?',
         text: 'Your order will not be processed',
@@ -167,6 +183,7 @@ export default {
       return this.getCart.map(({ name }) => name).join(', ')
     },
     postToHistory () {
+      this.isLoading = true
       axios
         .post(`${process.env.VUE_APP_BASE_URL}api/v1/histories`, {
           invoice: '#10302390',

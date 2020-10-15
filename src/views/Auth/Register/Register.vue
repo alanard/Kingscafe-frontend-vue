@@ -131,17 +131,18 @@
                       !$v.password.minLength
                     "
                   >
-                    Register
+                  <span v-if="isLoading == false">Login</span>
+                  <Circle8 class="loading" v-if="isLoading"></Circle8>
                   </button>
-                  <p class="typo__p" v-if="submitStatus === 'OK'">
+                  <!-- <p class="typo__p" v-if="submitStatus === 'OK'">
                     Thanks for your submission!
-                  </p>
-                  <p class="typo__p" v-if="submitStatus === 'ERROR'">
+                  </p> -->
+                  <!-- <p class="typo__p" v-if="submitStatus === 'ERROR'">
                     Please fill the form correctly.
                   </p>
                   <p class="typo__p" v-if="submitStatus === 'PENDING'">
                     Sending...
-                  </p>
+                  </p> -->
                 </div>
               </div>
             </form>
@@ -156,8 +157,10 @@
 <script>
 import { mapActions } from 'vuex'
 import { required, minLength, maxLength } from 'vuelidate/lib/validators'
+import mixins from '../../../components/mixins/Loading'
 export default {
   name: 'Register',
+  mixins: [mixins],
   data () {
     return {
       firstName: '',
@@ -189,26 +192,15 @@ export default {
       maxLength: maxLength(20)
     }
   },
-  errhandling: {
-    // errorMsg: this.err.response.status === 403
-  },
   methods: {
     ...mapActions(['register']),
     linkLogin () {
       this.$router.push({ path: '/login' })
     },
     submit () {
+      this.isLoading = true
       console.log('submit!')
       this.$v.$touch()
-      if (this.$v.$invalid) {
-        this.submitStatus = 'ERROR'
-      } else {
-        // do your submit logic here
-        this.submitStatus = 'PENDING'
-        setTimeout(() => {
-          this.submitStatus = 'OK'
-        }, 500)
-      }
       const data = {
         firstName: this.firstName,
         lastName: this.lastName,
@@ -217,6 +209,7 @@ export default {
       }
       this.register(data)
         .then((res) => {
+          this.isLoading = false
           this.$swal({
             title: 'Successfully registered :))',
             text: 'Please Login',

@@ -22,6 +22,7 @@
                   class="form-control form-control-lg"
                   placeholder="Email"
                   v-model="email"
+                  required
                 />
               </div>
               <div class="form-group">
@@ -31,6 +32,7 @@
                   class="form-control form-control-lg"
                   placeholder="Password"
                   v-model="password"
+                  required
                 />
               </div>
               <div class="form-group">
@@ -39,17 +41,13 @@
                   class="btn btn-info btn-block btn-lg"
                   @click="handleLogin"
                 >
-                  Login
+                  <span v-if="isLoading == false">Login</span>
+                <Circle8 class="loading" v-if="isLoading"></Circle8>
                 </button>
               </div>
             </form>
           </div>
           <div class="line"></div>
-          <!-- Alert Register -->
-          <!-- <div class="alert alert-danger" role="alert" v-show="alertRegister">
-            email already registered, Please login!
-            <span @click="linkLogin">Login</span>
-          </div> -->
           <div class="register-text">Do not have an account?</div>
           <div class="form-group">
             <div
@@ -69,19 +67,22 @@
 
 <script>
 import { mapActions } from 'vuex'
-
+import mixins from '../../../components/mixins/Loading'
 export default {
   name: 'Login',
+  mixins: [mixins],
   data () {
     return {
       email: '',
       password: '',
       alertRegister: false
+      // isLoading: true
     }
   },
   methods: {
     ...mapActions(['login', 'getProducts']),
     handleLogin (e) {
+      this.isLoading = true
       e.preventDefault()
       const data = {
         email: this.email,
@@ -89,10 +90,12 @@ export default {
       }
       this.login(data)
         .then((res) => {
+          this.isLoading = false
           this.getProducts()
           this.$router.push({ path: '/home' })
         })
         .catch((err) => {
+          this.isLoading = false
           if (err.response.status === 403 || err.response.status === 401) {
             this.$swal({
               title: 'Email Or Password Wrong',

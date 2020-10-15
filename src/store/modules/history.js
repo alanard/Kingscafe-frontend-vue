@@ -18,7 +18,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       axios.get(`${process.env.VUE_APP_BASE_URL}api/v1/histories?orderby=date&sort=desc`)
         .then((res) => {
-          console.log(res.data.result)
+          // console.log(res.data.result)
           setex.commit('setGetHistory', res.data.result)
           resolve(res)
         }).catch((err) => {
@@ -26,22 +26,10 @@ const actions = {
         })
     })
   }
-  // getHistoryByDate (setex) {
-  //   return new Promise((resolve, reject) => {
-  //     axios.get(`${process.env.VUE_APP_BASE_URL}api/v1/histories`)
-  //       .then((res) => {
-  //         console.log(res)
-  //         setex.commit('setHistoryDate', res.data.result[1])
-  //         resolve(res)
-  //       }).catch((err) => {
-  //         reject(err)
-  //       })
-  //   })
-  // }
 }
 const getters = {
   isSetHistory (state) {
-    console.log(state.history)
+    // console.log(state.history)
     return state.history
   }
 }

@@ -27,6 +27,7 @@
         :data="dataModal"
         @close-modal="toggleModal"
         @fire-event="handleEventModal"
+        :Loading="isLoading"
       />
     </div>
   </div>
@@ -38,8 +39,10 @@ import Table from './components/Table'
 import AsideLeft from '../../../components/_base/Aside-left'
 import Modal from '../../../components/_base/Modal'
 import { mapActions, mapGetters } from 'vuex'
+import mixins from '../../../components/mixins/Loading'
 export default {
   name: 'Product',
+  mixins: [mixins],
   components: {
     Navbar,
     Table,
@@ -64,12 +67,15 @@ export default {
       this.modalActive = !this.modalActive
       if (!this.modalActive) {
         this.clearModal()
+        this.isLoading = false
       }
     },
     handleEventModal () {
+      this.isLoading = false
       this.dataModal.id ? this.updateProduct() : this.addProduct()
     },
     updateProduct () {
+      this.isLoading = true
       const data = new FormData()
       data.append('name', this.dataModal.name)
       data.append('image', this.dataModal.image)
@@ -83,8 +89,30 @@ export default {
           this.getProducts()
           console.log('update')
           this.modalActive = false
+          this.isLoading = false
           // Alert
           this.$swal('Success', 'Data Successfuly updated', 'OK')
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+    addProduct () {
+      this.isLoading = true
+      const data = new FormData()
+      data.append('name', this.dataModal.name)
+      data.append('image', this.dataModal.image)
+      data.append('price', this.dataModal.price)
+      data.append('idCategory', this.dataModal.idCategory)
+      data.append('status', this.dataModal.status)
+      this.postProducts(data)
+        .then(() => {
+          this.clearModal()
+          this.modalActive = false
+          this.isLoading = false
+          // Alert
+          this.$swal('Success', 'Data Successfuly added', 'OK')
+          this.getProducts()
         })
         .catch((err) => {
           console.log(err)
@@ -100,31 +128,13 @@ export default {
       this.dataModal.image = data.image
     },
     clearModal () {
+      this.isLoading = false
       this.dataModal.id = null
       this.dataModal.name = ''
       this.dataModal.price = ''
       this.dataModal.idCategory = ''
       this.dataModal.status = ''
       this.dataModal.image = null
-    },
-    addProduct () {
-      const data = new FormData()
-      data.append('name', this.dataModal.name)
-      data.append('image', this.dataModal.image)
-      data.append('price', this.dataModal.price)
-      data.append('idCategory', this.dataModal.idCategory)
-      data.append('status', this.dataModal.status)
-      this.postProducts(data)
-        .then(() => {
-          this.clearModal()
-          this.modalActive = false
-          // Alert
-          this.$swal('Success', 'Data Successfuly added', 'OK')
-          this.getProducts()
-        })
-        .catch((err) => {
-          console.log(err)
-        })
     }
   },
   computed: {

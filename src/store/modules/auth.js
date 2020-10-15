@@ -30,10 +30,10 @@ const actions = {
       // Do something with response data
       return response
     }, function (error) {
-      console.log(error)
+      // console.log(error)
       // Any status codes that falls outside the range of 2xx cause this function to trigger
       // Do something with response error
-      console.log(error.response)
+      // console.log(error.response)
       if (error.response.status === 401 && error.response.data.result === 'Invalid Token') {
         localStorage.removeItem('token')
         setex.commit('setToken', null)
@@ -71,17 +71,17 @@ const actions = {
     })
   },
   login (setex, payload) {
-    console.log(payload)
+    // console.log(payload)
     return new Promise((resolve, reject) => {
       axios.post(`${process.env.VUE_APP_BASE_URL}api/v1/users/login`, payload)
         .then((res) => {
-          console.log(res)
+          // console.log(res)
           setex.commit('setUser', res.data.result)
           localStorage.setItem('token', res.data.result.token)
           // axios.defaults.headers.common.Authorization = `Bearer ${setex.state.token}`
           resolve(res.data.result[0])
         }).catch((err) => {
-          console.log(err)
+          // console.log(err)
           reject(err)
         })
     })

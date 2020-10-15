@@ -58,7 +58,10 @@
                 type="submit"
                 class="btn btn-info btn-block btn-lg"
                 @click="$emit('fire-event')"
-              >{{data.id ? 'Update Product' : 'Add Product'}}</button>
+              >
+              <span v-if="Loading === false" >{{data.id ? 'Update Product' : 'Add Product'}}</span>
+              <Circle8 class="loading-panjang" v-if="Loading"></Circle8>
+              </button>
             </div>
             <div class="form-group">
               <button
@@ -75,8 +78,10 @@
 </template>
 
 <script>
+import mixins from '../mixins/Loading'
 export default {
   name: 'Modal',
+  mixins: [mixins],
   // props juga bisa melempar function
   // Jadi tidak perlu menggunakan emit
   props: {
@@ -85,6 +90,9 @@ export default {
     },
     closeModal: {
       type: Function
+    },
+    Loading: {
+      type: Object
     }
   },
   methods: {

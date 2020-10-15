@@ -78,7 +78,7 @@ export default {
     ...mapActions(['getProducts']),
     deleteProduct (id) {
       axios
-        .delete(`http://localhost:4100/api/v1/products/${id}`)
+        .delete(`${process.env.VUE_APP_BASE_URL}api/v1/products/${id}`)
         .then(() => {
           this.$swal({
             title: 'Are you sure to delete?',

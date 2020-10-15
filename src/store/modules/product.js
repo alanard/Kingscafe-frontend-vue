@@ -125,7 +125,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       axios.post(`${process.env.VUE_APP_BASE_URL}api/v1/products`, payload)
         .then((res) => {
-          console.log(res)
+          // console.log(res)
           resolve(res.data.result)
         }).catch((err) => {
           reject(err)
@@ -137,7 +137,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       axios.patch(`${process.env.VUE_APP_BASE_URL}api/v1/products/` + payload.id, payload.data)
         .then((res) => {
-          console.log(res)
+          // console.log(res)
           resolve(res.data.result)
         }).catch((err) => {
           reject(err)
@@ -153,7 +153,7 @@ const getters = {
     return state.postProduct
   },
   getCart (state) {
-    console.log(state.carts)
+    // console.log(state.carts)
     return state.carts
   },
   countCart (state) {
