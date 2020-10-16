@@ -1,11 +1,11 @@
 <template>
   <div id="app">
-    <Circle8></Circle8>
+    <Circle2></Circle2>
   </div>
 </template>
 
 <script>
-import { Circle8 } from 'vue-loading-spinner'
+import { Circle2 } from 'vue-loading-spinner'
 export default {
   data () {
     return {
@@ -13,7 +13,7 @@ export default {
     }
   },
   components: {
-    Circle8
+    Circle2
   }
 }
 </script>

@@ -14,7 +14,7 @@ body {
 .loading {
   width: 60px;
   position: relative;
-  left: 165px;
+  left: 44%;
 }
 
 .loading-mid {
@@ -27,6 +27,20 @@ body {
   width: 60px;
   position: relative;
   left: 180px;
+}
+@media screen and (max-width: 576px) {
+  html,
+  body {
+    /* width: 480px; */
+    overflow-x: hidden;
+  }
+  .loading {
+  width: 60px;
+  position: relative;
+  left: 44%;
+  top: -7px;
+}
+
 }
 </style>
 <script>

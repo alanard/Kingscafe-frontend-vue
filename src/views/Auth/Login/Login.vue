@@ -42,7 +42,7 @@
                   @click="handleLogin"
                 >
                   <span v-if="isLoading == false">Login</span>
-                <Circle8 class="loading" v-if="isLoading"></Circle8>
+                <Circle2 class="loading" v-if="isLoading"></Circle2>
                 </button>
               </div>
             </form>
@@ -61,7 +61,7 @@
         </div>
       </div>
     </div>
-    <div class="img-brand2"></div>
+    <!-- <div class="img-brand2"></div> -->
   </div>
 </template>
 
@@ -154,7 +154,7 @@ export default {
   font-size: 110px;
   color: rgb(73, 65, 65);
   z-index: 100;
-
+  margin-bottom: 40px;
   text-shadow: 0px 10px 10px rgb(104, 88, 88);
 }
 .brand .description {
@@ -199,58 +199,74 @@ div .register-text {
 /* Setingan hp */
 @media screen and (max-width: 576px) {
   .brand {
+    /* border: 1px solid black; */
     display: inline-block;
     position: absolute;
     top: 0;
     left: 0;
-    width: 480px;
+    width: 100%;
     height: 250px;
+    /* overflow-x: hidden; */
+  }
+  .brand .img-brand {
+    background-image: url('https://raw.githubusercontent.com/alanard/Kingscafe-frontend-vue/master/src/assets/kingscafe-logos.PNG');
+    width: 250px;
+    height: 115px;
+    position: relative;
+    top: 7px;
+    left: 50px;
+    right: 0px;
+    transform: rotate(0deg);
+    z-index: -100;
   }
   .brand .title {
-    border: 1px solid black;
-    font-family: 'Pacifico', cursive;
-    display: block;
-    padding-left: 70px;
-    left: 20px;
-    font-size: 25px;
-    color: rgb(73, 65, 65);
+    display: none;
   }
   .brand .description {
-    border: 1px solid black;
+    /* border: 1px solid black; */
     display: block;
-    width: 280px;
+    width: 300px;
     text-align: center;
     top: 15px;
-    font-size: 12px;
-    font-weight: bolder;
-    font-family: 'Lato', sans-serif;
-    color: rgb(73, 65, 65);
+    font-size: 14px;
+    margin: auto;
+  }
+  .overlay {
+    /* border: 1px solid black; */
+    margin: 280px auto;
   }
   .modal-dialog {
-    width: 260px;
-    margin-top: 140px;
-    margin-right: 150px;
+    width: 320px;
+    margin: 140px auto;
     /* Depan untuk mengatur arah bayangan */
     box-shadow: 10px 10px 10px 5px rgba(0, 0, 0, 0.25);
   }
-  .line {
-    border: 1px solid rgb(111, 203, 226);
-    width: 80%;
-    margin: auto;
+  .modal-content {
+    /* border: 1px solid black; */
+  }
+  .modal-body {
+    /* border: 1px solid black; */
+  }
+  .form-group {
+    /* border: 1px solid black; */
+  }
+  .form-control {
+    /* border: 1px solid black; */
+    height: 45px
   }
   .btn {
-    margin-left: 50%;
-    margin-top: 20px;
-    width: 200px;
-    transform: translateX(-50%);
-    background-color: rgb(42, 44, 42);
+    height: 45px;
+    font-size: 19px;
   }
-
-  div .register-text {
-    /* border: 1px solid black; */
-    margin: 25px 35px 0px 35px;
-    font-weight: bold;
-    color: gray;
+  .btn.reg {
+  margin-left: 50%;
+  margin-top: 20px;
+  width: 180px;
+  height: 40px;
+  transform: translateX(-50%);
+  padding-top: 6px;
+  background: #f24f8a;
+  font-size: 16px;
   }
 }
 </style>

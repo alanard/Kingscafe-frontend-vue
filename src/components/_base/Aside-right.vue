@@ -84,7 +84,7 @@
         <div class="or">Or</div>
         <button class="btn btn-primary send-email" @click="postToHistory()">
             <span v-if="isLoading == false">Checkout</span>
-            <Circle8 class="loading-mid" v-if="isLoading"></Circle8>
+            <Circle2 class="loading-mid" v-if="isLoading"></Circle2>
         </button>
       </div>
     </div>
@@ -192,6 +192,7 @@ export default {
           amount: this.totalprice()
         })
         .then((res) => {
+          this.isLoading = false
           console.log(res)
           this.$swal('Order Success', 'Order Successfully', 'success')
           this.showModalCheckout()

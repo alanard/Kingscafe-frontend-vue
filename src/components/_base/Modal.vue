@@ -60,7 +60,7 @@
                 @click="$emit('fire-event')"
               >
               <span v-if="Loading === false" >{{data.id ? 'Update Product' : 'Add Product'}}</span>
-              <Circle8 class="loading-panjang" v-if="Loading"></Circle8>
+              <Circle2 class="loading-panjang" v-if="Loading"></Circle2>
               </button>
             </div>
             <div class="form-group">

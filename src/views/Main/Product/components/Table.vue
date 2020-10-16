@@ -11,7 +11,6 @@
               <th>Name</th>
               <th>Price</th>
               <th>ID Category</th>
-              <th>Name Category</th>
               <th>Status</th>
               <th>Edit</th>
               <th>Delete</th>
@@ -30,7 +29,6 @@
               <td>{{ product.name }}</td>
               <td>{{ product.price }}</td>
               <td>{{ product.idCategory }}</td>
-              <td>{{ product.nameCategory }}</td>
               <td>{{ product.status }}</td>
               <td>
                 <!-- Ini Show Modal edit -->
@@ -44,7 +42,8 @@
               </td>
               <td>
                 <button class="text-success" @click="deleteProduct(product.id)">
-                  <i class="fas fa-trash-alt"></i>
+                  <i class="fas fa-trash-alt" v-if="isLoading === false"></i>
+                  <Circle2 v-if="isLoading"></Circle2>
                 </button>
               </td>
             </tr>
@@ -66,9 +65,11 @@
 <script>
 import axios from 'axios'
 import { mapActions, mapGetters } from 'vuex'
+import mixins from '../../../../components/mixins/Loading'
 // import ErrHandling from './errHandling'
 export default {
   name: 'Card',
+  mixins: [mixins],
   data () {
     return {
       deleteProductAlert: false
@@ -77,6 +78,7 @@ export default {
   methods: {
     ...mapActions(['getProducts']),
     deleteProduct (id) {
+      this.isLoading = true
       axios
         .delete(`${process.env.VUE_APP_BASE_URL}api/v1/products/${id}`)
         .then(() => {
@@ -97,13 +99,16 @@ export default {
                 'success'
               )
               this.getProducts()
+              this.isLoading = false
             } else {
               this.$swal('Cancelled', 'Your file is still intact', 'info')
+              this.isLoading = false
             }
           })
         })
         .catch((err) => {
           console.log(err.response)
+          this.isLoading = false
         })
     }
   },

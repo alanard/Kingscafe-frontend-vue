@@ -16,11 +16,11 @@ export default {
     ...mapActions(['logout']),
     linkLogout () {
       this.$swal({
-        title: 'Are you sure?',
+        title: 'Are you sure to Logout?',
         text: "You can't revert your action",
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonText: 'Are you sure to Logout?',
+        confirmButtonText: 'Yes',
         cancelButtonText: 'No, Keep it!',
         showCloseButton: true,
         showLoaderOnConfirm: true

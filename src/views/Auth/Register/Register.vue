@@ -2,10 +2,11 @@
   <div>
     <div class="brand">
       <span class="title">King'S Cafe</span>
+      <div class="image"></div>
       <span class="description">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia
-        molestias repellendus nesciunt voluptate, assumenda vitae similique
-        doloribus animi cum error.
+        a contemporary cafe that provides many menu variants, ranging from food,
+        drinks, desserts, cakes, etc. And we provide and invite every street
+        musician to contribute and provide entertainment every weekend
       </span>
     </div>
     <!-- Form Register -->
@@ -131,18 +132,9 @@
                       !$v.password.minLength
                     "
                   >
-                  <span v-if="isLoading == false">Login</span>
-                  <Circle8 class="loading" v-if="isLoading"></Circle8>
+                  <span v-if="isLoading == false">Register</span>
+                  <Circle2 class="loading" v-if="isLoading"></Circle2>
                   </button>
-                  <!-- <p class="typo__p" v-if="submitStatus === 'OK'">
-                    Thanks for your submission!
-                  </p> -->
-                  <!-- <p class="typo__p" v-if="submitStatus === 'ERROR'">
-                    Please fill the form correctly.
-                  </p>
-                  <p class="typo__p" v-if="submitStatus === 'PENDING'">
-                    Sending...
-                  </p> -->
                 </div>
               </div>
             </form>
@@ -241,13 +233,6 @@ export default {
 </script>
 
 <style scoped>
-.alert.alert-danger {
-  width: 400px;
-  /* margin: 10px 20px 0px 20px; */
-  font-size: 18px;
-  font-weight: 500;
-}
-
 .brand {
   /* border: 1px solid black; */
   display: inline-block;
@@ -336,43 +321,48 @@ export default {
 }
 
 @media screen and (max-width: 576px) {
-  .container {
-    width: 360px;
-  }
   .brand {
+    /* border: 1px solid black; */
     display: inline-block;
     position: absolute;
     top: 0;
     left: 0;
-    width: 480px;
     height: 250px;
   }
   .brand .title {
-    border: 1px solid black;
+    /* border: 1px solid black;
     font-family: 'Pacifico', cursive;
     display: block;
-    padding-left: 100px;
-    left: 20px;
-    font-size: 25px;
-    color: rgb(73, 65, 65);
+    text-align: center;
+    font-size: 40px;
+    color: rgb(73, 65, 65); */
+    display: none;
+  }
+  .brand .image {
+    background-image: url('https://raw.githubusercontent.com/alanard/Kingscafe-frontend-vue/master/src/assets/kingscafe-logos.PNG');
+    position: relative;
+    top: 10px;
+    left: 50px;
+    width: 370px;
+    height: 170px;
+    background-size: cover;
+    margin-left: 50%;
+    transform: translateX(-70%);
   }
   .brand .description {
-    border: 1px solid black;
+    /* border: 1px solid black; */
     display: block;
-    width: 350px;
+    width: 450px;
+    margin: auto;
     text-align: center;
-    top: 15px;
-    font-size: 14px;
-    font-weight: bolder;
-    font-family: 'Lato', sans-serif;
+    top: 20px;
+    font-size: 18px;
     color: rgb(73, 65, 65);
   }
   .modal-dialog {
     /* border: 1px solid black; */
-    width: 300px;
-    margin-left: 30px;
-    margin-top: 140px;
-    margin-right: 150px;
+    width: 450px;
+    margin: 350px auto;
     box-shadow: 10px 10px 10px 5px rgba(0, 0, 0, 0.25);
   }
   .line {
@@ -394,6 +384,11 @@ export default {
     position: absolute;
     width: 600px;
     left: 0px;
+  }
+
+  /* Display none */
+  .img-brand2 {
+    display: none
   }
 }
 </style>
