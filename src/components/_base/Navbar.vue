@@ -4,7 +4,7 @@
       <div class="img-menu"></div>
       <input type="text" id="search" placeholder="FOOD ITEMS" v-on:keyup="setSearch" />
       <label class="img-src" for="search"></label>
-      <div class="cart-togle"></div>
+      <div class="cart-togle"><span class="count">{{countCart}}</span></div>
     </div>
     <div class="nav cart">
       <span>Cart</span>
@@ -225,11 +225,22 @@ export default {
     background-image: url('https://raw.githubusercontent.com/alanard/web-slicing-kingscafe/master/assets/img/logo-img/cart.jpg');
     background-size: cover;
     position: relative;
-    width: 30px;
-    height: 30px;
-    top: 13px;
-    left: 75px;
+    width: 40px;
+    height: 40px;
+    top: 10px;
+    left: 25%;
     /* top: 33px; */
+  }
+  .count {
+    border: 1px solid black;
+    border-radius: 100%;
+    background-color: turquoise;
+    margin-left: 23px;
+    position: relative;
+    top: -10px;
+    font-size: 25px;
+    font-weight: bolder;
+    /* color: turquoise; */
   }
 }
 </style>

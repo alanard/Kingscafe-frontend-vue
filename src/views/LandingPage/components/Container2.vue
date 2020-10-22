@@ -128,4 +128,68 @@ export default {
   margin: 10px 20px 20px 10px;
   flex: 1;
 }
+
+@media screen and (max-width: 576px) {
+  .main-content2 {
+    /* border: 1px solid black; */
+    width: 100%;
+    height: 1100px;
+    background-color: #997357;
+    background-size: 800px;
+  }
+
+  .main-content2 .title {
+    /* border: 1px solid black; */
+    border-radius: 10px;
+    background-color: aliceblue;
+    display: inline-block;
+    width: 90%;
+
+    position: relative;
+    top: 730px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+
+    box-shadow: -10px 10px 10px 5px rgba(0, 0, 0, 0.25);
+  }
+
+  .main-content2 .title .title-card {
+    /* border: 1px solid black; */
+    font-size: 25px;
+    color: #997357;
+    margin: 10px 20px 10px 20px;
+  }
+
+  .main-content2 .title .content-card {
+    /* border: 1px solid black; */
+    font-size: 14px;
+    margin: 10px 20px 10px 20px;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .card-group {
+    /* border: 1px solid black; */
+    width: 410px;
+    height: 410px;
+    position: relative;
+    left: 0px;
+    top: 70px;
+
+    display: flex;
+    flex-direction: column;
+  }
+  .card-group .card-image1 {
+    border-top-left-radius: 60px;
+    border-bottom-right-radius: 60px;
+  }
+  .card-group .card-image2 {
+  }
+  .card-group .card-image3 {
+  }
+  .card-group .card-image4 {
+    border-top-left-radius: 60px;
+    border-bottom-right-radius: 60px;
+  }
+}
 </style>

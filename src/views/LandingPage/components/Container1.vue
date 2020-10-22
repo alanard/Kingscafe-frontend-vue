@@ -95,4 +95,67 @@ export default {
   top: 300px;
   left: -560px;
 }
+
+/* Setingan untuk mobile */
+@media screen and (max-width: 576px) {
+  .main-content {
+  /* border: 1px solid black; */
+  box-sizing: border-box;
+  width: 100%;
+  height: 1000px;
+  }
+
+  .main-content .img-content1 {
+    display: inline-block;
+    width: 180px;
+    height: 300px;
+    margin: 100px 12px 12px 20px;
+  }
+
+  .main-content .img-content2 {
+    display: inline-block;
+    width: 180px;
+    height: 300px;
+    margin: 100px 12px 12px 5px;
+  }
+
+  .main-content .about {
+    /* border: 1px solid black; */
+    border-radius: 5px;
+    width: 350px;
+    height: 280px;
+    box-sizing: border-box;
+
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -40px;
+  }
+
+  .main-content .about .title {
+    /* border: 1px solid black; */
+
+    font-size: 25px;
+    color: #997357;
+    margin: 10px 20px 10px 20px;
+  }
+
+  .main-content .about .content {
+    /* border: 1px solid black; */
+    font-size: 14px;
+    margin: 10px 20px 10px 20px;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .mapcontent {
+    background-size: cover;
+    background-position-x: -190px;
+    background-position-y: 0px;
+    width: 100%;
+    height: 350px;
+    position: relative;
+    top: 180px;
+    left: 0;
+  }
+}
 </style>

@@ -39,8 +39,18 @@ body {
   position: relative;
   left: 44%;
   top: -7px;
-}
+  }
+  .loading-mid {
+  width: 60px;
+  position: relative;
+  left: 235px;
+  }
 
+  .loading-panjang {
+  width: 60px;
+  position: relative;
+  left: 135px;
+}
 }
 </style>
 <script>

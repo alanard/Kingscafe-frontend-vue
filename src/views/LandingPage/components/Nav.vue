@@ -60,7 +60,7 @@ export default {
 
 <style scoped>
 .nav-content {
-  background-image: url('https://raw.githubusercontent.com/alanard/web-slicing-kingscafe/master/assets/img/landingPage/content/backgroundnav.jpg');
+  background-image: url('../../../assets/backgroundnav.jpg');
   background-size: cover;
   width: 100%;
   height: 650px;
@@ -105,7 +105,6 @@ export default {
   /* border: 1px solid black; */
   font-size: 100px;
   color: white;
-  /* text-align: center; */
   padding-left: 50px;
   text-shadow: 100px 100px 100px rgba(0, 0, 0, 0.25);
 }
@@ -118,51 +117,59 @@ export default {
   margin-top: 10px;
 }
 
-/* Settingan untuk tablet */
-@media screen and (max-width: 768px) {
-}
-
 /* Setingan untuk hp */
 @media screen and (max-width: 576px) {
-  .nav.justify-content-end {
-    border: 1px solid rgb(221, 165, 165);
+  .nav-content {
+    width: 100%;
+    height: 650px;
+    /* border: 1px solid black; */
   }
 
   .nav .nav-item {
     /* border: 1px solid black; */
-    font-size: 11px;
-    margin: 0 auto;
-    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    margin-left: 0px;
+    color: rgb(189, 176, 176);
+    font-size: 14px;
+    margin: 2px;
   }
+
   .nav .nav-item .nav-link {
-    margin: 0;
+    color: white;
+    opacity: 0.8;
+    cursor: pointer;
     padding: 5px;
   }
-  .nav-content {
-    background-size: cover;
-    overflow: hidden;
-    width: 360px;
-    height: 650px;
+
+  .nav .nav-item .nav-link:hover {
+    color: rgb(175, 162, 162);
   }
+
   .nav-content .wellcome {
+    /* border: 1px solid black; */
+    font-family: 'Pacifico', cursive;
     font-size: 30px;
-    margin-top: 125px;
-    padding-left: 80px;
+    margin-top: 120px;
+    color: rgb(189, 185, 185);
+    padding-left: 90px;
   }
 
   .nav-content .brand-title {
-    font-size: 55px;
+    font-family: 'Pacifico', cursive;
     /* border: 1px solid black; */
+    font-size: 64px;
     color: white;
-    display: inline-block;
-    padding-top: 40px;
+    padding-left: 30px;
+    margin-top: 40px;
+    text-shadow: 100px 100px 100px rgba(0, 0, 0, 0.25);
   }
 
   .nav-content .brand-title-item {
+    font-family: 'Lato', sans-serif;
     color: rgb(211, 196, 176);
-    font-size: 17px;
+    font-size: 20px;
     padding-left: 50px;
-    margin-top: 30px;
+    margin-top: 10px;
   }
 }
 </style>
