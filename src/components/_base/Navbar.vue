@@ -4,7 +4,7 @@
       <div class="img-menu"></div>
       <input type="text" id="search" placeholder="FOOD ITEMS" v-on:keyup="setSearch" />
       <label class="img-src" for="search"></label>
-      <div class="cart-togle"><span class="count">{{countCart}}</span></div>
+      <div class="cart-togle"><span class="count-togle">{{countCart}}</span></div>
     </div>
     <div class="nav cart">
       <span>Cart</span>
@@ -33,6 +33,9 @@ export default {
 </script>
 
 <style scoped>
+.count-togle {
+  display: none;
+}
 /* nav search */
 .header {
   /* border: 1px solid black; */
@@ -231,7 +234,8 @@ export default {
     left: 25%;
     /* top: 33px; */
   }
-  .count {
+  .count-togle {
+    display: list-item;
     border: 1px solid black;
     border-radius: 100%;
     background-color: turquoise;

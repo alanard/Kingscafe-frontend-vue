@@ -146,7 +146,7 @@ export default {
     width: 90%;
 
     position: relative;
-    top: 730px;
+    top: 720px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 100;
@@ -170,10 +170,11 @@ export default {
 
   .card-group {
     /* border: 1px solid black; */
-    width: 410px;
-    height: 410px;
+    width: 380px;
+    height: 380px;
     position: relative;
-    left: 0px;
+    left: 50%;
+    transform: translateX(-50%);
     top: 70px;
 
     display: flex;
@@ -182,14 +183,21 @@ export default {
   .card-group .card-image1 {
     border-top-left-radius: 60px;
     border-bottom-right-radius: 60px;
+    background-position-x: -60px;
+    margin: 20px 0px 0px 20px;
   }
   .card-group .card-image2 {
+  margin: 20px 20px 0px 10px;
   }
   .card-group .card-image3 {
+  margin: 5px 0px 20px 20px;
   }
   .card-group .card-image4 {
     border-top-left-radius: 60px;
     border-bottom-right-radius: 60px;
+    background-position-x: -20px;
+    background-repeat: no-repeat;
+    margin: 5px 20px 20px 10px;
   }
 }
 </style>

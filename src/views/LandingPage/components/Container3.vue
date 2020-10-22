@@ -117,7 +117,7 @@ export default {
   .main-menu .menu-card {
     /* border: 1px solid black; */
     width: inherit;
-    height: 800px;
+    height: 700px;
     margin: auto;
 
     display: flex;
@@ -127,7 +127,7 @@ export default {
   .main-menu .menu-card .card1 {
     /* border: 1px solid black; */
     background-position-x: -60px;
-    background-position-y: -300px;
+    background-position-y: -260px;
 
     flex: 1;
     flex-direction: column;
@@ -135,7 +135,7 @@ export default {
   .main-menu .menu-card .card2 {
     /* border: 1px solid black; */
     background-position-x: 60px;
-    background-position-y: -280px;
+    background-position-y: -250px;
 
     flex: 1;
     flex-direction: column;
@@ -143,7 +143,7 @@ export default {
   .main-menu .menu-card .card3 {
     /* border: 1px solid black; */
     background-position-x: -60px;
-    background-position-y: -240px;
+    background-position-y: -200px;
 
     flex: 1;
     flex-direction: column;
@@ -152,7 +152,7 @@ export default {
     /* border: 1px solid black; */
     /* background-repeat: no-repeat; */
     background-position-x: 60px;
-    background-position-y: -290px;
+    background-position-y: -250px;
 
     flex: 1;
     flex-direction: column;
@@ -161,7 +161,7 @@ export default {
     /* border: 1px solid black; */
     /* background-repeat: no-repeat; */
     background-position-x: -60px;
-    background-position-y: -90px;
+    background-position-y: -75px;
 
     flex: 1;
     flex-direction: column;

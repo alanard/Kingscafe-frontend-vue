@@ -107,23 +107,23 @@ export default {
 
   .main-content .img-content1 {
     display: inline-block;
-    width: 180px;
+    width: 170px;
     height: 300px;
-    margin: 100px 12px 12px 20px;
+    margin: 100px 0px 0px 2%;
   }
 
   .main-content .img-content2 {
     display: inline-block;
-    width: 180px;
+    width: 170px;
     height: 300px;
-    margin: 100px 12px 12px 5px;
+    margin: 100px 0px 0px 5px;
   }
 
   .main-content .about {
     /* border: 1px solid black; */
     border-radius: 5px;
-    width: 350px;
-    height: 280px;
+    width: 320px;
+    height: 310px;
     box-sizing: border-box;
 
     position: relative;

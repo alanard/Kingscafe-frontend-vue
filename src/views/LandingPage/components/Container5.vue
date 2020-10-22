@@ -178,6 +178,8 @@ export default {
     position: relative;
     left: 0px;
     top: -80px;
+    left: 50%;
+    transform: translateX(-50%);
 
     display: flex;
     flex-direction: column;
@@ -185,18 +187,22 @@ export default {
   .card-group .card-image-music1 {
     border-top-right-radius: 60px;
     border-bottom-left-radius: 60px;
+    margin: 20px 0px 10px 20px;
   }
   .card-group .card-image-music2 {
     border-top-left-radius: 60px;
     border-bottom-right-radius: 60px;
+  margin: 20px 20px 10px 10px;
   }
   .card-group .card-image-music3 {
     border-top-left-radius: 60px;
     border-bottom-right-radius: 60px;
+  margin: 5px 0px 20px 20px;
   }
   .card-group .card-image-music4 {
     border-top-right-radius: 60px;
     border-bottom-left-radius: 60px;
+    margin: 5px 20px 20px 10px;
   }
 }
 </style>

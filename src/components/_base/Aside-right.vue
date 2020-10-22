@@ -174,10 +174,7 @@ export default {
       )
     },
     totalprice () {
-      return this.getCart.reduce(
-        (a, b) => a + ((b.count * 11) / 10) * b.price,
-        0
-      )
+      return this.total() + this.ppn()
     },
     totalOrder () {
       return this.getCart.map(({ name }) => name).join(', ')

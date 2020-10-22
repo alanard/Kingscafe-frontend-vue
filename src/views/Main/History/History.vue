@@ -16,7 +16,7 @@
                   <span class="circle3"></span>
                   <span class="info1">Today's Income</span>
                   <span class="info2" v-for="(histories, index) in isSetHistory[1]" :key="index">
-                    <span v-if="histories.length < 1">Tidak ada pemasukan</span>
+                    <!-- <span v-if="histories.length < 1">Tidak ada pemasukan</span> -->
                     <span>{{histories.amount}}</span>
                     </span>
                   <span class="info3">+2% Yesterday</span>
@@ -27,7 +27,7 @@
                   <span class="circle3"></span>
                   <span class="info1">Order</span>
                   <span class="info2" v-for="(histories, index) in isSetHistory[2]" :key="index">
-                    <span v-if="histories.length < 1">Tidak ada pemasukan</span>
+                    <!-- <span v-if="histories.length < 1">Tidak ada pemasukan</span> -->
                     <span>{{histories.amount}}</span>
                   </span>
                   <span class="info3">+5% Last Week</span>
@@ -38,7 +38,7 @@
                   <span class="circle3"></span>
                   <span class="info1">year's Income</span>
                   <span class="info2" v-for="(histories, index) in isSetHistory[3]" :key="index">
-                    <span v-if="histories.length < 1">Tidak ada pemasukan</span>
+                    <!-- <span v-if="histories.length < 1">Tidak ada pemasukan</span> -->
                     <span>{{histories.amount}}</span>
                   </span>
                   <span class="info3">+10% Last Year</span>

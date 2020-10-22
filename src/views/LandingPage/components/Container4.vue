@@ -89,8 +89,8 @@ export default {
 
   .main-content3 .img-ourcafe {
     background-position-x: -50px;
-    width: 430px;
-    height: 430px;
+    width: 410px;
+    height: 410px;
 
     display: inline-block;
     position: relative;
